@@ -1,25 +1,29 @@
-﻿namespace TeslaAppMovilFinal2._0
+﻿using TeslaAppMovilFinal2._0.Models;
+using TeslaAppMovilFinal2._0.Services;
+
+namespace TeslaAppMovilFinal2._0
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        private readonly VehiculoService _vehiculoService = new();
 
         public MainPage()
         {
             InitializeComponent();
+            CargarVehiculos();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void CargarVehiculos()
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            try
+            {
+                var vehiculos = await _vehiculoService.ObtenerVehiculosAsync();
+                VehiculosView.ItemsSource = vehiculos;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", "No se pudieron cargar los vehículos: " + ex.Message, "OK");
+            }
         }
     }
-
 }

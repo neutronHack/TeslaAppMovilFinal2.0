@@ -7,9 +7,28 @@
     Shell.FlyoutBehavior="Flyout"
     Title="TeslaAppMovilFinal2._0">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!-- Página principal -->
+    <FlyoutItem Title="Home" Icon="home.png">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+    </FlyoutItem>
+
+    <!-- Iniciar sesión -->
+    <FlyoutItem Title="Iniciar sesión" Icon="login_icon.png">
+        <ShellContent
+            Title="Iniciar sesión"
+            ContentTemplate="{DataTemplate local:LoginPage}"
+            Route="LoginPage" />
+    </FlyoutItem>
+
+    <!-- Registrarse -->
+    <FlyoutItem Title="Registrarse" Icon="register_icon.png">
+        <ShellContent
+            Title="Registrarse"
+            ContentTemplate="{DataTemplate local:RegisterPage}"
+            Route="RegisterPage" />
+    </FlyoutItem>
 
 </Shell>

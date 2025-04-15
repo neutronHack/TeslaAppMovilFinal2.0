@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "12404945594",
+    "firebase_url": "https://teslaappmovil-default-rtdb.firebaseio.com",
+    "project_id": "teslaappmovil",
+    "storage_bucket": "teslaappmovil.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12404945594:android:edb2c7889647f3b2eac883",
+        "android_client_info": {
+          "package_name": "com.companyname.teslaappmovil"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2wtx-SRIejWyAPT-icqnKIQZJ0VE77xk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
