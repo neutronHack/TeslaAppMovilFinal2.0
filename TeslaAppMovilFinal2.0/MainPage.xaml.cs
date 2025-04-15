@@ -10,6 +10,12 @@ namespace TeslaAppMovilFinal2._0
         public MainPage()
         {
             InitializeComponent();
+            // Verifica si hay sesión
+            if (Helpers.SessionManager.UsuarioActual != null)
+            {
+                UserInfoBar.IsVisible = true;
+                UserInfoLabel.Text = $"Usuario: {Helpers.SessionManager.UsuarioActual.Nombre} {Helpers.SessionManager.UsuarioActual.Apellido}";
+            }
             CargarVehiculos();
         }
 
@@ -25,5 +31,6 @@ namespace TeslaAppMovilFinal2._0
                 await DisplayAlert("Error", "No se pudieron cargar los vehículos: " + ex.Message, "OK");
             }
         }
+
     }
 }

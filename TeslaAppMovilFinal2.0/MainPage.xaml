@@ -12,8 +12,14 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
+    
+
     <ScrollView>
         <StackLayout Padding="20" Spacing="10">
+            
+            <Grid x:Name="UserInfoBar" Padding="10" BackgroundColor="#007AFF" IsVisible="False">
+                <Label x:Name="UserInfoLabel" TextColor="White" FontSize="14" />
+            </Grid>
 
             <Label Text="Carros Populares"
                    FontSize="28"
@@ -72,5 +78,6 @@
 
 
         </StackLayout>
+
     </ScrollView>
 </ContentPage>

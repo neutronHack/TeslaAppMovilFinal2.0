@@ -1,4 +1,5 @@
-﻿namespace TeslaAppMovilFinal2._0.Models
+﻿
+namespace TeslaAppMovilFinal2._0.Models
 {
     public class Usuario
     {

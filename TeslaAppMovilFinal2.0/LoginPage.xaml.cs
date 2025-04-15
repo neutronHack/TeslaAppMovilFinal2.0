@@ -20,12 +20,26 @@ public partial class LoginPage : ContentPage
             return;
         }
 
-        // Aquí iría autenticación con Firebase más adelante
-        await DisplayAlert("Bienvenido", $"Sesión iniciada como:\n{email}", "OK");
-    }
+        var firebase = new Services.FirebaseServiceUsuario();
+        var usuario = await firebase.AutenticarUsuarioAsync(email, password);
 
+        if (usuario != null)
+        {
+            // Guardar usuario en sesión
+            Helpers.SessionManager.UsuarioActual = usuario;
+
+            await DisplayAlert("Éxito", $"Bienvenido {usuario.Nombre}", "OK");
+
+            // Redirigir a MainPage
+            Application.Current.MainPage = new AppShell();
+        }
+        else
+        {
+            await DisplayAlert("Error", "Correo o contraseña incorrectos", "OK");
+        }
+    }
     private async void OnRegisterRedirect(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("RegisterPage");
+        await Shell.Current.GoToAsync("//RegisterPage");
     }
 }
