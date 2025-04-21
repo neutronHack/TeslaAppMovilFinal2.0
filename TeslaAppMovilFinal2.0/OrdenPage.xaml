@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TeslaAppMovilFinal2._0.OrdenPage"
+             Title="Personaliza tu Tesla"
+             BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <!-- Modelo y foto -->
+            <Label Text="{Binding Vehiculo.Modelo}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+            <Image Source="{Binding Vehiculo.ImagenUrl}" HeightRequest="150" HorizontalOptions="Center" />
+
+            <!-- COLOR EXTERIOR -->
+            <Label Text="Color Exterior" FontSize="18" FontAttributes="Bold"/>
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                <ImageButton Source="colorstealthgrey.avif" Style="{StaticResource circle}" Clicked="OnColorSelected" CommandParameter="Stealth Grey"/>
+                <ImageButton Source="paint_white.avif" Style="{StaticResource circle}" Clicked="OnColorSelected" CommandParameter="Pearl White"/>
+                <ImageButton Source="paint_blue.avif" Style="{StaticResource circle}" Clicked="OnColorSelected" CommandParameter="Deep Blue"/>
+                <ImageButton Source="diamond_black.avif" Style="{StaticResource circle}" Clicked="OnColorSelected" CommandParameter="Solid Black"/>
+                <ImageButton Source="paint_red.avif" Style="{StaticResource circle}" Clicked="OnColorSelected" CommandParameter="Red Multi-Coat"/>
+                <ImageButton Source="paint_silver_r1.avif" Style="{StaticResource circle}" Clicked="OnColorSelected" CommandParameter="Silver"/>
+            </HorizontalStackLayout>
+            <Label Text="{Binding Color}" HorizontalOptions="Center" FontSize="14"/>
+
+            <!-- AROS -->
+            <Label Text="Aros" FontSize="18" FontAttributes="Bold"/>
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                <ImageButton Source="crossflow19.avif" Style="{StaticResource circle}" WidthRequest="60" HeightRequest="60" Clicked="OnArosSelected" CommandParameter="Crossflow Negros"/>
+                <ImageButton Source="helix20_wheels.avif" Style="{StaticResource circle}" WidthRequest="60" HeightRequest="60" Clicked="OnArosSelected" CommandParameter="Crossflow Plata"/>
+            </HorizontalStackLayout>
+            <Label Text="{Binding Aros}" HorizontalOptions="Center" FontSize="14"/>
+
+            <!-- INTERIOR -->
+            <Label Text="Color Interior" FontSize="18" FontAttributes="Bold"/>
+            <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                <ImageButton Source="tintblack.avif" Style="{StaticResource circle}" Clicked="OnInteriorSelected" CommandParameter="All Black"/>
+                <ImageButton Source="tint_white.avif" Style="{StaticResource circle}" Clicked="OnInteriorSelected" CommandParameter="White"/>
+            </HorizontalStackLayout>
+            <Label Text="{Binding Interior}" HorizontalOptions="Center" FontSize="14"/>
+
+            <!-- BOTÓN -->
+            <Button Text="Confirmar Personalización" BackgroundColor="#007AFF" TextColor="White" FontAttributes="Bold" HeightRequest="50" Clicked="OnGuardarClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

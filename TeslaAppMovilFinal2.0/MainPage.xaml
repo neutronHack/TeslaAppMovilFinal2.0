@@ -51,7 +51,7 @@
                                             <Button Text="Ordenar"
                                         BackgroundColor="#007AFF"
                                         TextColor="White"
-                                        CornerRadius="10" />
+                                        CornerRadius="10" Clicked="OnOrdenarClicked" />
                                             <Button Text="Detalles"
                                         BorderColor="#007AFF"
                                         TextColor="#007AFF"

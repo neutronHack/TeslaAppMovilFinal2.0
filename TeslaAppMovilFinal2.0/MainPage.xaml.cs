@@ -32,5 +32,16 @@ namespace TeslaAppMovilFinal2._0
             }
         }
 
+        private async void OnOrdenarClicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            var vehiculo = button?.BindingContext as Vehiculo;
+            if (vehiculo != null)
+            {
+                await Navigation.PushAsync(new OrdenPage(vehiculo));
+            }
+        }
+
+
     }
 }
