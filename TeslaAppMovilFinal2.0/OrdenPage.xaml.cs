@@ -55,6 +55,34 @@ public partial class OrdenPage : ContentPage
         else
             await DisplayAlert("Error", "Hubo un problema al guardar", "OK");
     }
+
+    private async void OnIrAComprasClicked(object sender, EventArgs e)
+    {
+        var personalizacion = new PersonalizacionVehiculo
+        {
+            IdUsuario = Helpers.SessionManager.UsuarioActual?.IdUsuario ?? "",
+            IdVehiculo = Vehiculo.Modelo,
+            Color = this.Color,
+            Aros = this.Aros,
+            Interior = this.Interior
+        };
+
+        await Navigation.PushAsync(new ComprasPage(personalizacion));
+    }
+
+    private async void OnIrAReservasClicked(object sender, EventArgs e)
+    {
+        var personalizacion = new PersonalizacionVehiculo
+        {
+            IdUsuario = Helpers.SessionManager.UsuarioActual?.IdUsuario ?? "",
+            IdVehiculo = Vehiculo.Modelo,
+            Color = this.Color,
+            Aros = this.Aros,
+            Interior = this.Interior
+        };
+
+        await Navigation.PushAsync(new ReservasPage(personalizacion));
+    }
+
 }
 
-    

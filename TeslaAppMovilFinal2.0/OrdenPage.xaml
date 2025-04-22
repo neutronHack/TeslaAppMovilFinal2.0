@@ -40,8 +40,11 @@
             </HorizontalStackLayout>
             <Label Text="{Binding Interior}" HorizontalOptions="Center" FontSize="14"/>
 
-            <!-- BOTÓN -->
-            <Button Text="Confirmar Personalización" BackgroundColor="#007AFF" TextColor="White" FontAttributes="Bold" HeightRequest="50" Clicked="OnGuardarClicked"/>
+            <!-- COMPRAS -->
+            <Button Text="Ir a Compras" BackgroundColor="#34C759" TextColor="White" FontAttributes="Bold" HeightRequest="50" Clicked="OnIrAComprasClicked"/>
+
+            <!-- Reservas -->
+            <Button Text="Ir a Reservas" BackgroundColor="#34C759" TextColor="White" FontAttributes="Bold" HeightRequest="50" Clicked="OnIrAReservasClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

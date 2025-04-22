@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:TeslaAppMovilFinal2._0"
     Shell.FlyoutBehavior="Flyout"
     Title="TeslaAppMovilFinal2._0">
+<<<<<<< HEAD
 
     <!-- Página principal -->
     <FlyoutItem Title="Home" Icon="home.png">
@@ -29,4 +30,6 @@
             Route="RegisterPage" />
     </FlyoutItem>
 
+=======
+>>>>>>> 5f424439be5b01efd60e945c98cad97154af2912
 </Shell>

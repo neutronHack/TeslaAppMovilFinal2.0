@@ -1,0 +1,41 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TeslaAppMovilFinal2._0.ReservasPage"
+             Title="Resumen y Datos de Reserva">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Resumen de Personalización -->
+            <Label Text="Resumen de Personalización" FontSize="20" FontAttributes="Bold" />
+
+            <Label Text="Modelo:" FontAttributes="Bold"/>
+            <Label Text="{Binding Personalizacion.IdVehiculo}" />
+
+            <Label Text="Color Exterior:" FontAttributes="Bold"/>
+            <Label Text="{Binding Personalizacion.Color}" />
+
+            <Label Text="Aros:" FontAttributes="Bold"/>
+            <Label Text="{Binding Personalizacion.Aros}" />
+
+            <Label Text="Interior:" FontAttributes="Bold"/>
+            <Label Text="{Binding Personalizacion.Interior}" />
+
+            <!-- Datos del Cliente -->
+            <Label Text="Datos para la reserva" FontSize="20" FontAttributes="Bold" />
+
+            <Entry Placeholder="Nombre" Text="{Binding Nombre}" />
+            <Entry Placeholder="Apellido 1" Text="{Binding Apellido1}" />
+            <Entry Placeholder="Apellido 2" Text="{Binding Apellido2}" />
+            <Entry Placeholder="Cédula" Keyboard="Numeric" Text="{Binding Cedula}" />
+            <Entry Placeholder="Teléfono" Keyboard="Telephone" Text="{Binding Telefono}" />
+            <Entry Placeholder="Correo Electrónico" Keyboard="Email" Text="{Binding Email}" />
+
+            <Button Text="Finalizar Reserva"
+                    BackgroundColor="#007AFF"
+                    TextColor="White"
+                    Clicked="OnFinalizarReservaClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
