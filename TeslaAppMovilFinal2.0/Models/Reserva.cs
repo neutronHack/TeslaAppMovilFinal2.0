@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeslaAppMovilFinal2._0.Models
 {
-    class Reserva
+    public class Reserva
     {
         public string Apellido1 { get; set; }
         public string Apellido2 { get; set; }

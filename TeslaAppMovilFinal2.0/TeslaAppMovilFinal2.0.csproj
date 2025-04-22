@@ -68,6 +68,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="ComprarReservaPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ComprasPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
