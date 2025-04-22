@@ -43,8 +43,8 @@
             <!-- COMPRAS -->
             <Button Text="Ir a Compras" BackgroundColor="#34C759" TextColor="White" FontAttributes="Bold" HeightRequest="50" Clicked="OnIrAComprasClicked"/>
 
-            <!-- COMPRAS -->
-            <Button Text="Ir a Compras" BackgroundColor="#34C759" TextColor="White" FontAttributes="Bold" HeightRequest="50" Clicked="OnIrAReservasClicked"/>
+            <!-- Reservas -->
+            <Button Text="Ir a Reservas" BackgroundColor="#34C759" TextColor="White" FontAttributes="Bold" HeightRequest="50" Clicked="OnIrAReservasClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

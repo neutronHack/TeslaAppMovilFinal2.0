@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeslaAppMovilFinal2._0.MisReservasPage"
              Title="MisReservasPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Mis Reservas"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout x:Name="ReservasLayout" Padding="20" Spacing="15">
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

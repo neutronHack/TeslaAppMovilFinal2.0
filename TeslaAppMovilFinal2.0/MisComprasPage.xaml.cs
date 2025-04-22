@@ -59,7 +59,6 @@ public partial class MisComprasPage : ContentPage
                         new Label { Text = $"Color: {compra.Color}" },
                         new Label { Text = $"Aros: {compra.Aros}" },
                         new Label { Text = $"Interior: {compra.Interior}" },
-                        new Label { Text = $"Fecha de Compra: (no registrada explícitamente)" },
                         new Label { Text = $"Correo: {compra.Email}" }
                     }
                 }
