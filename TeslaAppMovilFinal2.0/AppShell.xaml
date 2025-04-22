@@ -17,10 +17,8 @@
 
     <!-- Iniciar sesión -->
     <FlyoutItem Title="Iniciar sesión" Icon="login_icon.png">
-        <ShellContent
-            Title="Iniciar sesión"
-            ContentTemplate="{DataTemplate local:LoginPage}"
-            Route="LoginPage" />
+        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}"/>
+        <ShellContent Route="AdminPage" ContentTemplate="{DataTemplate local:AdminPage}"/>      
     </FlyoutItem>
 
     <!-- Registrarse -->
