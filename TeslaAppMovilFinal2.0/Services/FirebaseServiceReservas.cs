@@ -31,22 +31,30 @@ namespace TeslaAppMovilFinal2._0.Services
                 return false;
             }
         }
-
-        public async Task<List<Reserva>> ObtenerReservasPorUsuarioAsync(string idUsuario)
+        public async Task<Dictionary<string, Reserva>?> ObtenerReservasDiccionarioAsync()
         {
             try
             {
-                var response = await _httpClient.GetFromJsonAsync<Dictionary<string, Reserva>>($"{_firebaseBaseUrl}/reservas.json");
-
-                if (response == null)
-                    return new List<Reserva>();
-
-                return response.Values.Where(r => r.IdUsuario == idUsuario).ToList();
+                return await _httpClient.GetFromJsonAsync<Dictionary<string, Reserva>>($"{_firebaseBaseUrl}/reservas.json");
             }
             catch
             {
-                return new List<Reserva>();
+                return null;
             }
         }
+
+        public async Task<bool> EliminarReservaAsync(string id)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"{_firebaseBaseUrl}/reservas/{id}.json");
+                return response.IsSuccessStatusCode;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TeslaAppMovilFinal2._0.ComprarReservaPage"
+             Title="Finalizar Compra">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            
+            <Label Text="Resumen de la Reserva" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center"/>
+            
+            <Label Text="{Binding ReservaResumen}" FontSize="16" LineBreakMode="WordWrap"/>
+            <BoxView HeightRequest="2" BackgroundColor="LightGray" Margin="0,10"/>
+            
+            <Label Text="Datos de la Tarjeta" FontSize="20" FontAttributes="Bold"/>
+            <Entry Placeholder="Número de Tarjeta" Keyboard="Numeric" Text="{Binding NumeroTarjeta}"/>
+            <Entry Placeholder="Fecha de Caducidad (MM/AA)" Text="{Binding FechaCaducidad}"/>
+            <Entry Placeholder="CVV" Keyboard="Numeric" IsPassword="True" Text="{Binding CVV}"/>
+            
+            <Button Text="Finalizar Compra" BackgroundColor="#007AFF" TextColor="White" FontAttributes="Bold" Clicked="OnFinalizarCompraClicked"/>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
