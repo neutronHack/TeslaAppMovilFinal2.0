@@ -1,6 +1,4 @@
-using TeslaAppMovilFinal2._0.Models;
 using TeslaAppMovilFinal2._0.Services;
-using System.Net.Http.Json;
 
 namespace TeslaAppMovilFinal2._0;
 

@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using System.Text.Json;
+﻿using System.Text.Json;
 using TeslaAppMovilFinal2._0.Models;
 
 namespace TeslaAppMovilFinal2._0.Services

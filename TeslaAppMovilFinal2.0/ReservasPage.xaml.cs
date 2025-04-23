@@ -1,4 +1,4 @@
-using MailKit.Net.Smtp;
+using System.Net.Mail;
 using MimeKit;
 using TeslaAppMovilFinal2._0.Models;
 using TeslaAppMovilFinal2._0.Services;
@@ -91,28 +91,28 @@ public partial class ReservasPage : ContentPage
         mensaje.Body = new TextPart("plain")
         {
             Text = $@"
-        ¡Gracias por tu reserva, {reserva.Nombre}!
+            ¡Gracias por tu reserva, {reserva.Nombre}!
 
-        Aquí están los detalles de tu reserva:
+            Aquí están los detalles de tu reserva:
 
-        Modelo: {reserva.idVehiculo}
-        Color: {reserva.color}
-        Aros: {reserva.aros}
-        Interior: {reserva.interior}
+            Modelo: {reserva.idVehiculo}
+            Color: {reserva.color}
+            Aros: {reserva.aros}
+            Interior: {reserva.interior}
 
-        Nombre completo: {reserva.Nombre} {reserva.Apellido1} {reserva.Apellido2}
-        Cédula: {reserva.Cedula}
-        Teléfono: {reserva.Telefono}
-        Correo: {reserva.Email}
+            Nombre completo: {reserva.Nombre} {reserva.Apellido1} {reserva.Apellido2}
+            Cédula: {reserva.Cedula}
+            Teléfono: {reserva.Telefono}
+            Correo: {reserva.Email}
 
-        La reserva ha sido registrada exitosamente. Pronto nos pondremos en contacto contigo.
+            La reserva ha sido registrada exitosamente. Pronto nos pondremos en contacto contigo.
 
-        Saludos,
-        Tesla Costa Rica
-        "
+            Saludos,
+            Tesla Costa Rica
+            "
         };
 
-        using var cliente = new SmtpClient();
+        using var cliente = new MailKit.Net.Smtp.SmtpClient(); // Use MailKit's SmtpClient
         try
         {
             await cliente.ConnectAsync("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
