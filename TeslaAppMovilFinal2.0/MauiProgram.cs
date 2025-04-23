@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Maui;
-using Microsoft.Maui.Hosting;
 
 namespace TeslaAppMovilFinal2._0
 {

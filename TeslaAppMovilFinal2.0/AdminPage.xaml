@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TeslaAppMovilFinal2._0.AdminPage"
+             BackgroundColor="#0F0F0F"
+             Title="Administración Tesla">
+
+	<ScrollView>
+		<VerticalStackLayout Padding="20" Spacing="20">
+
+			<!-- Título principal -->
+			<Label Text="Gestión de Vehículos Tesla"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+
+			<!-- Formulario para agregar vehículos -->
+			<Frame CornerRadius="20" BackgroundColor="#1C1C1E" Padding="20" HasShadow="True">
+				<VerticalStackLayout Spacing="12">
+					<Entry x:Name="CodigoEntry" Placeholder="Código" TextColor="White" PlaceholderColor="#888"/>
+					<Entry x:Name="MarcaEntry" Placeholder="Marca" TextColor="White" PlaceholderColor="#888"/>
+					<Entry x:Name="ModeloEntry" Placeholder="Modelo" TextColor="White" PlaceholderColor="#888"/>
+					<Entry x:Name="AñoEntry" Placeholder="Año" Keyboard="Numeric" TextColor="White" PlaceholderColor="#888"/>
+					<Entry x:Name="PrecioEntry" Placeholder="Precio" Keyboard="Numeric" TextColor="White" PlaceholderColor="#888"/>
+					<Entry x:Name="KilometrajeEntry" Placeholder="Kilometraje" Keyboard="Numeric" TextColor="White" PlaceholderColor="#888"/>
+
+					<Picker x:Name="EstadoPick" Title="Estado" TitleColor="#888" TextColor="White">
+						<Picker.ItemsSource>
+							<x:Array Type="{x:Type x:String}">
+								<x:String>Nuevo</x:String>
+								<x:String>Usado</x:String>
+							</x:Array>
+						</Picker.ItemsSource>
+					</Picker>
+
+					<!--<Button Text="Seleccionar imagen"
+                            Clicked="OnSelectImageClicked" />
+                    
+                    <Image x:Name="ImagenSeleccionada"
+                            WidthRequest="300" 
+                            HeightRequest="300" 
+                            HorizontalOptions="Center" 
+                            VerticalOptions="Center" />-->
+
+					<Entry x:Name="EnlaceImagenEntry" Placeholder="Enlace de la imagen" />
+
+					<!-- Botón para agregar -->
+					<Button Text="Agregar Vehículo"
+                            BackgroundColor="#007AFF"
+                            TextColor="White"
+                            CornerRadius="10"
+                            FontAttributes="Bold"
+                            Clicked="AgregarVehiculo"/>
+				</VerticalStackLayout>
+			</Frame>
+
+			<!-- Lista de vehículos -->
+			<Label Text="Lista de Vehículos"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White"/>
+
+			<CollectionView x:Name="VehiculosCollectionView">
+				<CollectionView.ItemTemplate>
+					<DataTemplate>
+						<Frame CornerRadius="15" BackgroundColor="#1C1C1E" Margin="50">
+							<VerticalStackLayout Padding="10" Spacing="8">
+								<Image Source="{Binding ImagenUrl}" HeightRequest="500" Aspect="AspectFill"/>
+								<Label Text="{Binding Codigo}" FontAttributes="Bold" FontSize="18" TextColor="White"/>
+								<Label Text="{Binding Marca}" TextColor="White"/>
+								<Label Text="{Binding Modelo}" TextColor="White"/>
+								<Label Text="Año: {Binding Año}" TextColor="White"/>
+								<Label Text="Precio: {Binding Precio}" TextColor="White"/>
+								<Label Text="Kilometraje: {Binding Kilometraje}" TextColor="White"/>
+								<Label Text="Estado: {Binding Estado}" TextColor="White"/>
+
+								<HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+									<Button Text="Editar" BackgroundColor="#FFD60A" TextColor="#000" Clicked="OnEditarVehiculoClicked"/>
+									<Button Text="Eliminar" BackgroundColor="#FF453A" TextColor="White" Clicked="OnEliminarVehiculoClicked"/>
+								</HorizontalStackLayout>
+							</VerticalStackLayout>
+						</Frame>
+					</DataTemplate>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
+
+		</VerticalStackLayout>
+	</ScrollView>
+</ContentPage>

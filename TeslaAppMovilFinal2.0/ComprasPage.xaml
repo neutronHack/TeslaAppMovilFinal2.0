@@ -2,65 +2,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeslaAppMovilFinal2._0.ComprasPage"
              Title="Resumen y Datos de Compra"
-             BackgroundColor="#bfbfbf">
+             BackgroundColor="White">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="25">
 
             <!-- 🧾 TARJETA DE RESUMEN -->
-            <Frame CornerRadius="12" BorderColor="Black" BackgroundColor="#FAFAFA"
-                   Padding="15" HasShadow="True" Margin="0.5">
+            <Frame CornerRadius="12" BorderColor="#CCCCCC" BackgroundColor="#FAFAFA" Padding="15" HasShadow="True">
                 <VerticalStackLayout Spacing="8">
-                    <Label TextColor="Black" Text="Resumen de Compra" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="Resumen de Compra" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
 
                     <Grid ColumnDefinitions="Auto,*"
               RowDefinitions="Auto,Auto,Auto,Auto"
               RowSpacing="6"
               ColumnSpacing="10">
-                        
 
+                        <Label Text="Modelo:" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.IdVehiculo}" Grid.Row="0" Grid.Column="1"/>
 
-                        <Label TextColor="Black" Text="Modelo:" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
-                        <Label TextColor="Black" Text="{Binding Personalizacion.IdVehiculo}" Grid.Row="0" Grid.Column="1"/>
+                        <Label Text="Color Exterior:" FontAttributes="Bold" Grid.Row="1" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Color}" Grid.Row="1" Grid.Column="1"/>
 
-                        <Label TextColor="Black" Text="Color Exterior:" FontAttributes="Bold" Grid.Row="1" Grid.Column="0"/>
-                        <Label TextColor="Black" Text="{Binding Personalizacion.Color}" Grid.Row="1" Grid.Column="1"/>
+                        <Label Text="Aros:" FontAttributes="Bold" Grid.Row="2" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Aros}" Grid.Row="2" Grid.Column="1"/>
 
-                        <Label TextColor="Black" Text="Aros:" FontAttributes="Bold" Grid.Row="2" Grid.Column="0"/>
-                        <Label TextColor="Black" Text="{Binding Personalizacion.Aros}" Grid.Row="2" Grid.Column="1"/>
-
-                        <Label TextColor="Black" Text="Interior:" FontAttributes="Bold" Grid.Row="3" Grid.Column="0"/>
-                        <Label TextColor="Black" Text="{Binding Personalizacion.Interior}" Grid.Row="3" Grid.Column="1"/>
+                        <Label Text="Interior:" FontAttributes="Bold" Grid.Row="3" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Interior}" Grid.Row="3" Grid.Column="1"/>
                     </Grid>
                 </VerticalStackLayout>
             </Frame>
 
 
-            <Frame CornerRadius="12" BorderColor="black" BackgroundColor="#FAFAFA" Padding="15" HasShadow="True">
+            <Frame CornerRadius="12" BorderColor="#CCCCCC" BackgroundColor="#FAFAFA" Padding="15" HasShadow="True">
                 <VerticalStackLayout Spacing="12">
-                    
-                    <Label TextColor="Black" HorizontalOptions="Center" Text="Datos para la compra" FontSize="18" FontAttributes="Bold"/>
-                    
-                    <BoxView HeightRequest="1" BackgroundColor="Black" HorizontalOptions="Center"/>
-                    
-                    <Entry TextColor="Black" Placeholder="Nombre" Text="{Binding Nombre}" />
-                    <Entry TextColor="Black" Placeholder="Apellido 1" Text="{Binding Apellido1}" />
-                    <Entry TextColor="Black" Placeholder="Apellido 2" Text="{Binding Apellido2}" />
-                    <Entry TextColor="Black" Placeholder="Cédula" Keyboard="Numeric" Text="{Binding Cedula}" />
-                    <Entry TextColor="Black" Placeholder="Teléfono" Keyboard="Telephone" Text="{Binding Telefono}" />
-                    <Entry TextColor="Black" Placeholder="Correo Electrónico" Keyboard="Email" Text="{Binding Email}" />
-                    
-                    
-                    
-                    <Label HorizontalOptions="Center" TextColor="Black" Text="Datos de la tarjeta" FontSize="18" FontAttributes="Bold" Margin="0,15,0,0"/>
-                    <Entry TextColor="Black" Placeholder="Número de Tarjeta (16 dígitos)" Keyboard="Numeric" Text="{Binding NumeroTarjeta}" />
-                    <Entry TextColor="Black" Placeholder="Fecha de Caducidad (MM/AA)" Text="{Binding FechaCaducidad}" />
-                    <Entry TextColor="Black" Placeholder="CVV (3 dígitos)" Keyboard="Numeric" IsPassword="True" Text="{Binding CVV}" />
+                    <Label Text="Datos para la compra" FontSize="18" FontAttributes="Bold"/>
+
+                    <Entry Placeholder="Nombre" Text="{Binding Nombre}" />
+                    <Entry Placeholder="Apellido 1" Text="{Binding Apellido1}" />
+                    <Entry Placeholder="Apellido 2" Text="{Binding Apellido2}" />
+                    <Entry Placeholder="Cédula" Keyboard="Numeric" Text="{Binding Cedula}" />
+                    <Entry Placeholder="Teléfono" Keyboard="Telephone" Text="{Binding Telefono}" />
+                    <Entry Placeholder="Correo Electrónico" Keyboard="Email" Text="{Binding Email}" />
+
+                    <Label Text="Datos de la tarjeta" FontSize="18" FontAttributes="Bold" Margin="0,15,0,0"/>
+                    <Entry Placeholder="Número de Tarjeta (16 dígitos)" Keyboard="Numeric" Text="{Binding NumeroTarjeta}" />
+                    <Entry Placeholder="Fecha de Caducidad (MM/AA)" Text="{Binding FechaCaducidad}" />
+                    <Entry Placeholder="CVV (3 dígitos)" Keyboard="Numeric" IsPassword="True" Text="{Binding CVV}" />
                 </VerticalStackLayout>
             </Frame>
 
-            <BoxView HeightRequest="1" BackgroundColor="black" HorizontalOptions="Center"/>
-            
             <Button Text="Finalizar Compra"
                     BackgroundColor="#007AFF"
                     TextColor="White"

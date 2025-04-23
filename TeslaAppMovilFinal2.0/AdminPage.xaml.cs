@@ -2,19 +2,17 @@ using TeslaAppMovilFinal2._0.Models;
 using TeslaAppMovilFinal2._0.Services;
 using Firebase.Database;
 using Firebase.Database.Query;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
 
 
 namespace TeslaAppMovilFinal2._0;
 
-public partial class GestionVehiculos : ContentPage
+public partial class AdminPage : ContentPage
 {
 
     private readonly FirebaseClient firebaseClient;
     private Vehiculo vehiculoSeleccionado;
 
-    public GestionVehiculos()
+    public AdminPage()
 	{
 		InitializeComponent();
         firebaseClient = new FirebaseClient("https://teslaappmovil-default-rtdb.firebaseio.com/");
@@ -32,7 +30,6 @@ public partial class GestionVehiculos : ContentPage
             vehiculo.Año = AñoEntry.Text;
             vehiculo.Precio = int.Parse(PrecioEntry.Text);
             vehiculo.Kilometraje = KilometrajeEntry.Text;
-            vehiculo.Estado = EstadoEntry.Text;
             vehiculo.ImagenUrl = EnlaceImagenEntry.Text;
         };
 
@@ -63,7 +60,7 @@ public partial class GestionVehiculos : ContentPage
         AñoEntry.Text = "";
         PrecioEntry.Text = "";
         KilometrajeEntry.Text = "";
-        EstadoEntry.Text = "";
+        EstadoPick.SelectedIndex = -1;
         EnlaceImagenEntry.Text = "";
         vehiculoSeleccionado = null;
     }
@@ -82,7 +79,7 @@ public partial class GestionVehiculos : ContentPage
             AñoEntry.Text = vehiculo.Año.ToString();
             PrecioEntry.Text = vehiculo.Precio.ToString();
             KilometrajeEntry.Text = vehiculo.Kilometraje.ToString();
-            EstadoEntry.Text = vehiculo.Estado;
+            EstadoPick.SelectedItem = vehiculo.Estado;
             EnlaceImagenEntry.Text = vehiculo.ImagenUrl;
         }
     }
@@ -108,40 +105,10 @@ public partial class GestionVehiculos : ContentPage
         }
     }
 
-    //private string imagenLocalPath = string.Empty;
     //private async void OnSelectImageClicked(object sender, EventArgs e)
     //{
-    //    var resultado = await FilePicker.PickAsync(new PickOptions
-    //    {
-    //        PickerTitle = "Seleccionar imagen",
-    //        FileTypes = FilePickerFileType.Images
-    //    });
-
-    //    if (resultado != null) 
-    //    {
-    //        var fileName = Path.GetFileName(resultado.FullPath);
-    //        var destino = Path.Combine(FileSystem.AppDataDirectory, fileName);
-
-    //        using var stream = await resultado.OpenReadAsync();
-    //        using var newStream = File.OpenWrite(destino);
-    //        await stream.CopyToAsync(newStream);
-
-
-    //        imagenLocalPath = destino;
-    //        ImagenSeleccionada.Source = imagenLocalPath; // Si tienes un <Image x:Name="ImagenPreview"/>
-
-    //    }
-
-    private async void CerrarSesionClicked(object sender, EventArgs e)
-    {
-        //// Implementación para cerrar sesión
-        Application.Current.MainPage = new LoginPage();
-        DisplayAlert("Cerrar sesión", "Has cerrado sesión exitosamente.", "OK");
-    }
+    //    var mediafile = await ImagenSeleccionada
+    //}
 
 
 }
-
-
-
-
