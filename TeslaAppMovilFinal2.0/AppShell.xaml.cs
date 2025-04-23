@@ -5,6 +5,10 @@
         public AppShell()
         {
             InitializeComponent();
+<<<<<<< Updated upstream
+=======
+            
+>>>>>>> Stashed changes
 
             Items.Clear();
             Items.Add(new FlyoutItem
@@ -12,14 +16,14 @@
                 Title = "Home",
                 Icon = "home.png",
                 Items =
-            {
-                new ShellContent
-                {
-                    Title = "Home",
-                    ContentTemplate = new DataTemplate(typeof(MainPage)),
-                    Route = "MainPage"
-                }
-            }
+                   {
+                       new ShellContent
+                       {
+                           Title = "Home",
+                           ContentTemplate = new DataTemplate(typeof(MainPage)),
+                           Route = "MainPage"
+                       }
+                   }
             });
 
             if (Helpers.SessionManager.UsuarioActual != null)
@@ -35,6 +39,11 @@
             }
         }
 
+<<<<<<< Updated upstream
+=======
+       
+
+>>>>>>> Stashed changes
         private void AgregarLogin()
         {
             Items.Add(new FlyoutItem
@@ -42,14 +51,14 @@
                 Title = "Iniciar sesión",
                 Icon = "login_icon.png",
                 Items =
-            {
-                new ShellContent
-                {
-                    Title = "Iniciar sesión",
-                    ContentTemplate = new DataTemplate(typeof(LoginPage)),
-                    Route = "LoginPage"
-                }
-            }
+                   {
+                       new ShellContent
+                       {
+                           Title = "Iniciar sesión",
+                           ContentTemplate = new DataTemplate(typeof(LoginPage)),
+                           Route = "LoginPage"
+                       }
+                   }
             });
         }
 
@@ -60,14 +69,14 @@
                 Title = "Registrarse",
                 Icon = "register_icon.png",
                 Items =
-            {
-                new ShellContent
-                {
-                    Title = "Registrarse",
-                    ContentTemplate = new DataTemplate(typeof(RegisterPage)),
-                    Route = "RegisterPage"
-                }
-            }
+                   {
+                       new ShellContent
+                       {
+                           Title = "Registrarse",
+                           ContentTemplate = new DataTemplate(typeof(RegisterPage)),
+                           Route = "RegisterPage"
+                       }
+                   }
             });
         }
 
@@ -84,7 +93,7 @@
                     {
                         Helpers.SessionManager.UsuarioActual = null;
 
-                        // Reiniciar AppShell para mostrar opciones actualizadas
+                        // Reiniciar AppShell para mostrar opciones actualizadas  
                         Application.Current.MainPage = new AppShell();
                     }
                 })
