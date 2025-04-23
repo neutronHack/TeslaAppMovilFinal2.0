@@ -30,25 +30,29 @@ public partial class OrdenPage : ContentPage
         OnPropertyChanged(nameof(Color));
         OnPropertyChanged(nameof(ImagenPersonalizada)); // 👈 asegura refresco en XAML
 
-        System.Diagnostics.Debug.WriteLine("Imagen generada: " + ImagenPersonalizada);
+        System.Diagnostics.Debug.WriteLine($"🔍 Modelo: {Vehiculo.Modelo} | Color: {Color}");
+        System.Diagnostics.Debug.WriteLine($"🖼 Imagen esperada: {ImagenPersonalizada}");
+
 
     }
 
     private string ObtenerImagenPorColor(string modelo, string color)
     {
-        string modeloKey = modelo.Replace("Tesla ", "").Replace(" ", ""); // Ej: "Tesla Model S" -> "ModelS"
+   
+        string modeloKey = modelo.Replace("Tesla ", "").Replace(" ", "").ToLower();
+
         string colorKey = color switch
         {
-            "Stealth Grey" => "StealthGrey",
-            "Pearl White" => "White",
-            "Deep Blue" => "Blue",
-            "Solid Black" => "Black",
-            "Red Multi-Coat" => "Red",
-            "Silver" => "QuickSilver",
-            _ => "StealthGrey" // default por si acaso
+            "Stealth Grey" => "stealthgrey",
+            "Pearl White" => "white",
+            "Deep Blue" => "blue",
+            "Solid Black" => "black",
+            "Red Multi-Coat" => "red",
+            "Silver" => "quicksilver",
+            _ => "stealthgrey"
         };
 
-        return $"{modeloKey}_{colorKey}.png";
+        return $"{modeloKey}_{colorKey}.png"; // Ej: modely_stealthgrey.png
     }
 
 

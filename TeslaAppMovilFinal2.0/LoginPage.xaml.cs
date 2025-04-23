@@ -1,3 +1,5 @@
+using Microsoft.Maui.Controls;
+
 namespace TeslaAppMovilFinal2._0;
 
 public partial class LoginPage : ContentPage
@@ -21,35 +23,22 @@ public partial class LoginPage : ContentPage
         var firebase = new Services.FirebaseServiceUsuario();
         var usuario = await firebase.AutenticarUsuarioAsync(email, password);
 
-        if (usuario.IdUsuario == "48143e95-8cc6-4a17-a7c5-ae9a22b3a83c")
+        if (usuario != null && usuario.IdRol == 1)
         {
+            // Guardar usuario en sesión
             Helpers.SessionManager.UsuarioActual = usuario;
+
             await DisplayAlert("Éxito", $"Bienvenido {usuario.Nombre}", "OK");
 
-            // Redirigir a AdminPage
+
             Application.Current.MainPage = new AdminPage();
         }
         else
         {
-            Helpers.SessionManager.UsuarioActual = usuario;
-            await DisplayAlert("Éxito", $"Bienvenido {usuario.Nombre}", "OK");
-            // Redirigir a MainPage
             Application.Current.MainPage = new AppShell();
+
+            await DisplayAlert("Error", "Correo o contraseña incorrectos", "OK");
         }
-        //if (usuario == null)
-        //{
-        //    // Guardar usuario en sesión
-        //    Helpers.SessionManager.UsuarioActual = usuario;
-
-        //    await DisplayAlert("Éxito", $"Bienvenido {usuario.Nombre}", "OK");
-
-        //    // Redirigir a MainPage
-        //    Application.Current.MainPage = new AppShell();
-        //}
-        //else
-        //{
-        //    await DisplayAlert("Error", "Correo o contraseña incorrectos", "OK");
-        //}
     }
     private async void OnRegisterRedirect(object sender, EventArgs e)
     {

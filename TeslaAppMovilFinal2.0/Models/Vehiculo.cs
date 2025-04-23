@@ -10,8 +10,9 @@
         public string Velocidad { get; set; }
         public string Codigo { get; set; }
         public string Marca { get; set; }
-        public int Año { get; set; }
-        public double Kilometraje { get; set; }
-        public string Estado { get; set; } // Nuevo o Usado
+        public string Año { get; set; }
+        public string Kilometraje { get; set; }
+        public string Estado { get; set; }
+
     }
 }
