@@ -4,9 +4,6 @@
              x:Class="TeslaAppMovilFinal2._0.AdminPage"
              Title="AdminPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUIIIIIIIIIIIIIII!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        
     </VerticalStackLayout>
 </ContentPage>
