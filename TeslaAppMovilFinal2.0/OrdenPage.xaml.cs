@@ -1,4 +1,4 @@
-using TeslaAppMovilFinal2._0.Models;
+﻿using TeslaAppMovilFinal2._0.Models;
 using TeslaAppMovilFinal2._0.Services;
 namespace TeslaAppMovilFinal2._0;
 public partial class OrdenPage : ContentPage
@@ -7,6 +7,8 @@ public partial class OrdenPage : ContentPage
     public string Color { get; set; } = "Stealth Grey";
     public string Aros { get; set; } = "Crossflow Negros";
     public string Interior { get; set; } = "All Black";
+    public string ImagenPersonalizada { get; set; }
+
 
     private readonly FirebaseServicePersonalizacion _firebaseService = new();
 
@@ -14,6 +16,8 @@ public partial class OrdenPage : ContentPage
     {
         InitializeComponent();
         Vehiculo = vehiculo;
+        Color = "Stealth Grey";
+        ImagenPersonalizada = ObtenerImagenPorColor(vehiculo.Modelo, Color);
         BindingContext = this;
     }
 
@@ -21,8 +25,32 @@ public partial class OrdenPage : ContentPage
     {
         var btn = sender as ImageButton;
         Color = btn?.CommandParameter?.ToString() ?? "";
+
+        ImagenPersonalizada = ObtenerImagenPorColor(Vehiculo.Modelo, Color); // 👈 aquí actualiza la imagen
         OnPropertyChanged(nameof(Color));
+        OnPropertyChanged(nameof(ImagenPersonalizada)); // 👈 asegura refresco en XAML
+
+        System.Diagnostics.Debug.WriteLine("Imagen generada: " + ImagenPersonalizada);
+
     }
+
+    private string ObtenerImagenPorColor(string modelo, string color)
+    {
+        string modeloKey = modelo.Replace("Tesla ", "").Replace(" ", ""); // Ej: "Tesla Model S" -> "ModelS"
+        string colorKey = color switch
+        {
+            "Stealth Grey" => "StealthGrey",
+            "Pearl White" => "White",
+            "Deep Blue" => "Blue",
+            "Solid Black" => "Black",
+            "Red Multi-Coat" => "Red",
+            "Silver" => "QuickSilver",
+            _ => "StealthGrey" // default por si acaso
+        };
+
+        return $"{modeloKey}_{colorKey}.png";
+    }
+
 
     private void OnArosSelected(object sender, EventArgs e)
     {
@@ -51,7 +79,7 @@ public partial class OrdenPage : ContentPage
 
         bool exito = await _firebaseService.GuardarPersonalizacionAsync(personalizacion);
         if (exito)
-            await DisplayAlert("�xito", "Tu personalizaci�n ha sido guardada", "OK");
+            await DisplayAlert("Éxito", "Tu personalización ha sido guardada", "OK");
         else
             await DisplayAlert("Error", "Hubo un problema al guardar", "OK");
     }

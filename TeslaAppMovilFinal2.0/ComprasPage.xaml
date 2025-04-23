@@ -1,43 +1,63 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeslaAppMovilFinal2._0.ComprasPage"
-             Title="Resumen y Datos de Compra">
+             Title="Resumen y Datos de Compra"
+             BackgroundColor="White">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="20" Spacing="25">
 
-            <!-- Resumen de Personalización -->
-            <Label Text="Resumen de Personalización" FontSize="20" FontAttributes="Bold" />
-            <Label Text="Modelo: " FontAttributes="Bold"/>
-            <Label Text="{Binding Personalizacion.IdVehiculo}" />
+            <!-- 🧾 TARJETA DE RESUMEN -->
+            <Frame CornerRadius="12" BorderColor="#CCCCCC" BackgroundColor="#FAFAFA" Padding="15" HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Resumen de Compra" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
 
-            <Label Text="Color Exterior:" FontAttributes="Bold"/>
-            <Label Text="{Binding Personalizacion.Color}" />
+                    <Grid ColumnDefinitions="Auto,*"
+              RowDefinitions="Auto,Auto,Auto,Auto"
+              RowSpacing="6"
+              ColumnSpacing="10">
 
-            <Label Text="Aros:" FontAttributes="Bold"/>
-            <Label Text="{Binding Personalizacion.Aros}" />
+                        <Label Text="Modelo:" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.IdVehiculo}" Grid.Row="0" Grid.Column="1"/>
 
-            <Label Text="Interior:" FontAttributes="Bold"/>
-            <Label Text="{Binding Personalizacion.Interior}" />
+                        <Label Text="Color Exterior:" FontAttributes="Bold" Grid.Row="1" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Color}" Grid.Row="1" Grid.Column="1"/>
 
-            <!-- Datos del Cliente -->
-            <Label Text="Datos para la compra" FontSize="20" FontAttributes="Bold" />
+                        <Label Text="Aros:" FontAttributes="Bold" Grid.Row="2" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Aros}" Grid.Row="2" Grid.Column="1"/>
 
-            <Entry Placeholder="Nombre" Text="{Binding Nombre}" />
-            <Entry Placeholder="Apellido 1" Text="{Binding Apellido1}" />
-            <Entry Placeholder="Apellido 2" Text="{Binding Apellido2}" />
-            <Entry Placeholder="Cédula" Keyboard="Numeric" Text="{Binding Cedula}" />
-            <Entry Placeholder="Teléfono" Keyboard="Telephone" Text="{Binding Telefono}" />
-            <Entry Placeholder="Correo Electrónico" Keyboard="Email" Text="{Binding Email}" />
+                        <Label Text="Interior:" FontAttributes="Bold" Grid.Row="3" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Interior}" Grid.Row="3" Grid.Column="1"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
 
-            <!-- Datos de la Tarjeta -->
-            <Label Text="Datos de la tarjeta" FontSize="20" FontAttributes="Bold" />
 
-            <Entry Placeholder="Número de Tarjeta" Keyboard="Numeric" Text="{Binding NumeroTarjeta}" />
-            <Entry Placeholder="Fecha de Caducidad (MM/AA)" Text="{Binding FechaCaducidad}" />
-            <Entry Placeholder="CVV" Keyboard="Numeric" IsPassword="True" Text="{Binding CVV}" />
+            <Frame CornerRadius="12" BorderColor="#CCCCCC" BackgroundColor="#FAFAFA" Padding="15" HasShadow="True">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Datos para la compra" FontSize="18" FontAttributes="Bold"/>
 
-            <Button Text="Finalizar Compra" BackgroundColor="#007AFF" TextColor="White" Clicked="OnFinalizarCompraClicked"/>
+                    <Entry Placeholder="Nombre" Text="{Binding Nombre}" />
+                    <Entry Placeholder="Apellido 1" Text="{Binding Apellido1}" />
+                    <Entry Placeholder="Apellido 2" Text="{Binding Apellido2}" />
+                    <Entry Placeholder="Cédula" Keyboard="Numeric" Text="{Binding Cedula}" />
+                    <Entry Placeholder="Teléfono" Keyboard="Telephone" Text="{Binding Telefono}" />
+                    <Entry Placeholder="Correo Electrónico" Keyboard="Email" Text="{Binding Email}" />
+
+                    <Label Text="Datos de la tarjeta" FontSize="18" FontAttributes="Bold" Margin="0,15,0,0"/>
+                    <Entry Placeholder="Número de Tarjeta (16 dígitos)" Keyboard="Numeric" Text="{Binding NumeroTarjeta}" />
+                    <Entry Placeholder="Fecha de Caducidad (MM/AA)" Text="{Binding FechaCaducidad}" />
+                    <Entry Placeholder="CVV (3 dígitos)" Keyboard="Numeric" IsPassword="True" Text="{Binding CVV}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Finalizar Compra"
+                    BackgroundColor="#007AFF"
+                    TextColor="White"
+                    CornerRadius="10"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    Clicked="OnFinalizarCompraClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

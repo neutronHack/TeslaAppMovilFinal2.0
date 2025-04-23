@@ -10,7 +10,7 @@
 
             <!-- Modelo y foto -->
             <Label Text="{Binding Vehiculo.Modelo}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
-            <Image Source="{Binding Vehiculo.ImagenUrl}" HeightRequest="150" HorizontalOptions="Center" />
+            <Image Source="{Binding ImagenPersonalizada}" HeightRequest="150" HorizontalOptions="Center" />
 
             <!-- COLOR EXTERIOR -->
             <Label Text="Color Exterior" FontSize="18" FontAttributes="Bold"/>
