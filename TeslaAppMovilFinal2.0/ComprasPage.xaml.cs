@@ -1,14 +1,14 @@
+using MailKit.Net.Smtp;
 using MimeKit;
 using TeslaAppMovilFinal2._0.Models;
 using TeslaAppMovilFinal2._0.Services;
-using MailKit.Net.Smtp;
 
 namespace TeslaAppMovilFinal2._0;
 
 public partial class ComprasPage : ContentPage
 {
     public PersonalizacionVehiculo Personalizacion { get; set; }
-    
+
     // Datos del cliente
     public string Nombre { get; set; }
     public string Apellido1 { get; set; }
@@ -112,7 +112,8 @@ public partial class ComprasPage : ContentPage
         mensaje.To.Add(new MailboxAddress(compra.Nombre, destinatario));
         mensaje.Subject = "Confirmación de Compra - Tesla Costa Rica";
 
-        mensaje.Body = new TextPart("plain")
+        // Fix the issue by using MimeKit's TextPart class
+        mensaje.Body = new MimeKit.TextPart("plain")
         {
             Text = $@"
             ¡Gracias por tu compra, {compra.Nombre}!

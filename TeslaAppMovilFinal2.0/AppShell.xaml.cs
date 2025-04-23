@@ -1,10 +1,11 @@
-﻿namespace TeslaAppMovilFinal2._0
+﻿
+namespace TeslaAppMovilFinal2._0
 {
     public partial class AppShell : Shell
     {
         public AppShell()
         {
-            InitializeComponent();
+            
 
             Items.Clear();
             Items.Add(new FlyoutItem
@@ -33,6 +34,11 @@
                 AgregarLogin();
                 AgregarRegistro();
             }
+        }
+
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
         }
 
         private void AgregarLogin()

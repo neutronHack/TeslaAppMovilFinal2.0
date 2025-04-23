@@ -3,7 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeslaAppMovilFinal2._0.AdminPage"
              Title="AdminPage">
-    <VerticalStackLayout>
-        
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label Text="Gestión de Vehículos Tesla" 
+               FontSize="24" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" />
+
+        <Frame CornerRadius="20" BackgroundColor="White" Padding="20" HasShadow="True">
+            <VerticalStackLayout Spacing="10">
+
+                <Entry x:Name="CodigoEntry" Placeholder="Código" />
+                <Entry x:Name="MarcaEntry" Placeholder="Marca" />
+                <Entry x:Name="ModeloEntry" Placeholder="Modelo" />
+                <Entry x:Name="AñoEntry" Placeholder="Año" Keyboard="Numeric" />
+                <Entry x:Name="PrecioEntry" Placeholder="Precio" Keyboard="Numeric" />
+                <Entry x:Name="KilometrajeEntry" Placeholder="Kilometraje" Keyboard="Numeric" />
+
+                <Picker x:Name="EstadoPicker" Title="Estado">
+                    <Picker.ItemsSource>
+                        <x:Array Type="x:String">
+                            <x:String>Nuevo</x:String>
+                            <x:String>Usado</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Entry x:Name="EnlaceImagenEntry" Placeholder="Enlace a Imagen" />
+
+                <Button Text="Agregar Vehículo" 
+                        BackgroundColor="#0A84FF" 
+                        TextColor="White"
+                        CornerRadius="10"
+                        Clicked="OnAgregarVehiculoClicked" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <Label Text="Lista de Vehículos" 
+               FontSize="20" 
+               FontAttributes="Bold" 
+               Margin="0,20,0,10" />
+
+        <CollectionView x:Name="VehiculosCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="15" BackgroundColor="White" Margin="0,5">
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="{Binding Codigo}" FontAttributes="Bold" FontSize="16" />
+                            <Label Text="{Binding Marca}" />
+                            <Label Text="{Binding Modelo}" />
+                            <Label Text="Año: {Binding Año}" />
+                            <Label Text="Precio: {Binding Precio}" />
+                            <Label Text="Kilometraje: {Binding Kilometraje}" />
+                            <Label Text="Estado: {Binding Estado}" />
+
+                            <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                                <Button Text="Editar" BackgroundColor="#FFD60A" TextColor="Black" Clicked="OnEditarVehiculoClicked" />
+                                <Button Text="Eliminar" BackgroundColor="#FF3B30" TextColor="White" Clicked="OnEliminarVehiculoClicked" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
     </VerticalStackLayout>
 </ContentPage>

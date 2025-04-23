@@ -4,10 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TeslaAppMovilFinal2._0"
-    Shell.FlyoutBehavior="Flyout"
+    FlyoutBehavior="Flyout"
     Title="TeslaAppMovilFinal2._0">
-<<<<<<< HEAD
-
     <!-- Página principal -->
     <FlyoutItem Title="Home" Icon="home.png">
         <ShellContent
@@ -29,7 +27,4 @@
             ContentTemplate="{DataTemplate local:RegisterPage}"
             Route="RegisterPage" />
     </FlyoutItem>
-
-=======
->>>>>>> 5f424439be5b01efd60e945c98cad97154af2912
 </Shell>

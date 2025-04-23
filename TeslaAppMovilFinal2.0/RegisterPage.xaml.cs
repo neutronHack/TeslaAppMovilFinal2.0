@@ -2,10 +2,10 @@ namespace TeslaAppMovilFinal2._0;
 
 public partial class RegisterPage : ContentPage
 {
-	public RegisterPage()
-	{
-		InitializeComponent();
-	}
+    public RegisterPage()
+    {
+        InitializeComponent();
+    }
     private async void OnRegisterClicked(object sender, EventArgs e)
     {
         string nombre = NombreEntry.Text;

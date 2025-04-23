@@ -1,7 +1,3 @@
-using Microsoft.Maui.Controls;
-using TeslaAppMovilFinal2._0.Models;
-using TeslaAppMovilFinal2._0.Services;
-
 namespace TeslaAppMovilFinal2._0;
 
 public partial class LoginPage : ContentPage
