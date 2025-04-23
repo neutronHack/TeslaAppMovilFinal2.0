@@ -68,10 +68,17 @@
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
 		<PackageReference Include="Microsoft.NETCore.Jit" Version="2.0.8" />
 		<PackageReference Include="MimeKit" Version="4.11.0" />
+		<PackageReference Include="Xam.Plugin.Media" Version="6.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="AdminPage.xaml">
+	  <Compile Update="GestionVehiculos.xaml.cs">
+	    <DependentUpon>GestionVehiculos.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="GestionVehiculos.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="LoginPage.xaml">
