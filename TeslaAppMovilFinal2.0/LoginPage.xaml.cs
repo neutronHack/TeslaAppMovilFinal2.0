@@ -31,7 +31,7 @@ public partial class LoginPage : ContentPage
             await DisplayAlert("Éxito", $"Bienvenido {usuario.Nombre}", "OK");
 
 
-            Application.Current.MainPage = new AdminPage();
+            Application.Current.MainPage = new GestionVehiculos();
         }
         else
         {
