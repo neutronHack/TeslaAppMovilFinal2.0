@@ -22,29 +22,53 @@ public partial class GestionVehiculos : ContentPage
 
     }
 
-    private async void AgregarVehiculo(object sender, EventArgs e)
+    private async void GuardarVehiculo(object sender, EventArgs e)
     {
-       var vehiculo = new Vehiculo();
+        if (vehiculoSeleccionado == null)
         {
-            vehiculo.Codigo = CodigoEntry.Text;
-            vehiculo.Marca = MarcaEntry.Text;
-            vehiculo.Modelo = PrecioEntry.Text;
-            vehiculo.Año = AñoEntry.Text;
-            vehiculo.Precio = int.Parse(PrecioEntry.Text);
-            vehiculo.Kilometraje = KilometrajeEntry.Text;
-            vehiculo.Estado = EstadoEntry.Text;
-            vehiculo.ImagenUrl = EnlaceImagenEntry.Text;
-        };
+            // Nuevo vehículo
+            var nuevoVehiculo = new Vehiculo
+            {
+                Codigo = CodigoEntry.Text,
+                Marca = MarcaEntry.Text,
+                Modelo = ModeloEntry.Text,
+                Año = AñoEntry.Text,
+                Precio = int.Parse(PrecioEntry.Text),
+                Kilometraje = KilometrajeEntry.Text,
+                Estado = EstadoEntry.Text,
+                ImagenUrl = EnlaceImagenEntry.Text
+            };
 
-        await firebaseClient
-            .Child("vehiculos")
-            .Child(vehiculo.Codigo)
-            .PutAsync(vehiculo);
+            await firebaseClient
+                .Child("vehiculos")
+                .Child(nuevoVehiculo.Codigo)
+                .PutAsync(nuevoVehiculo);
 
-        await DisplayAlert("Éxito", "Vehículo agregado correctamente", "OK");
+            await DisplayAlert("Éxito", "Vehículo agregado correctamente", "OK");
+        }
+        else
+        {
+            // Edición
+            vehiculoSeleccionado.Marca = MarcaEntry.Text;
+            vehiculoSeleccionado.Modelo = ModeloEntry.Text;
+            vehiculoSeleccionado.Año = AñoEntry.Text;
+            vehiculoSeleccionado.Precio = int.Parse(PrecioEntry.Text);
+            vehiculoSeleccionado.Kilometraje = KilometrajeEntry.Text;
+            vehiculoSeleccionado.Estado = EstadoEntry.Text;
+            vehiculoSeleccionado.ImagenUrl = EnlaceImagenEntry.Text;
+
+            await firebaseClient
+                .Child("vehiculos")
+                .Child(vehiculoSeleccionado.Codigo)
+                .PutAsync(vehiculoSeleccionado);
+
+            await DisplayAlert("Actualizado", "Vehículo modificado correctamente", "OK");
+        }
+
         LimpiarCampos();
         CargarVehiculos();
     }
+
 
     private async void CargarVehiculos()
     {
@@ -66,7 +90,11 @@ public partial class GestionVehiculos : ContentPage
         EstadoEntry.Text = "";
         EnlaceImagenEntry.Text = "";
         vehiculoSeleccionado = null;
+        GuardarButton.Text = "Agregar Vehículo";
+        FormularioTitulo.Text = "Agregar Vehículo";
+        CodigoEntry.IsEnabled = true;
     }
+
 
     private void OnEditarVehiculoClicked(object sender, EventArgs e)
     {
@@ -84,8 +112,14 @@ public partial class GestionVehiculos : ContentPage
             KilometrajeEntry.Text = vehiculo.Kilometraje.ToString();
             EstadoEntry.Text = vehiculo.Estado;
             EnlaceImagenEntry.Text = vehiculo.ImagenUrl;
+
+           
+            FormularioTitulo.Text = "Editar Vehículo";
+            GuardarButton.Text = "Editar Vehículo";
+
         }
     }
+
 
     private async void OnEliminarVehiculoClicked(object sender, EventArgs e)
     {
@@ -107,30 +141,6 @@ public partial class GestionVehiculos : ContentPage
             }
         }
     }
-
-    //private string imagenLocalPath = string.Empty;
-    //private async void OnSelectImageClicked(object sender, EventArgs e)
-    //{
-    //    var resultado = await FilePicker.PickAsync(new PickOptions
-    //    {
-    //        PickerTitle = "Seleccionar imagen",
-    //        FileTypes = FilePickerFileType.Images
-    //    });
-
-    //    if (resultado != null) 
-    //    {
-    //        var fileName = Path.GetFileName(resultado.FullPath);
-    //        var destino = Path.Combine(FileSystem.AppDataDirectory, fileName);
-
-    //        using var stream = await resultado.OpenReadAsync();
-    //        using var newStream = File.OpenWrite(destino);
-    //        await stream.CopyToAsync(newStream);
-
-
-    //        imagenLocalPath = destino;
-    //        ImagenSeleccionada.Source = imagenLocalPath; // Si tienes un <Image x:Name="ImagenPreview"/>
-
-    //    }
 
     private async void CerrarSesionClicked(object sender, EventArgs e)
     {

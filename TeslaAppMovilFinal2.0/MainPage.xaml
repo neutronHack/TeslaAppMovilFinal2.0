@@ -12,72 +12,61 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    
-
     <ScrollView>
-        <StackLayout Padding="20" Spacing="10">
-            
+        <VerticalStackLayout Padding="20" Spacing="10">
+
+            <!-- User Info (opcional) -->
             <Grid x:Name="UserInfoBar" Padding="10" BackgroundColor="#007AFF" IsVisible="False">
                 <Label x:Name="UserInfoLabel" TextColor="White" FontSize="14" />
             </Grid>
 
-            <Label Text="Carros Populares"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   TextColor="Black"
-                   Margin="0,10,0,10"/>
-
+            <!-- Lista de Vehículos -->
             <CollectionView x:Name="VehiculosView" ItemsLayout="VerticalList">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="0">
-                            <!-- Contenedor blanco con borde -->
-                            <Border StrokeShape="RoundRectangle 20"
-                        BackgroundColor="White"
-                        Padding="20"
-                        Margin="0,10">
+                        <Frame Margin="0,10"
+                           Padding="20"
+                           CornerRadius="20"
+                           HasShadow="True"
+                           BackgroundColor="White">
 
-                                <!-- Contenido de la tarjeta -->
-                                <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                            <Grid ColumnDefinitions="*, Auto" ColumnSpacing="15" VerticalOptions="Center">
+                                <!-- Datos a la izquierda -->
+                                <VerticalStackLayout Spacing="4" VerticalOptions="Center">
+                                    <Label Text="{Binding Modelo}" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+                                    <Label Text="{Binding Autonomia}" FontSize="13" TextColor="#555"/>
+                                    <Label Text="{Binding Aceleracion}" FontSize="13" TextColor="#555"/>
+                                    <Label Text="{Binding Velocidad}" FontSize="13" TextColor="#555"/>
 
-                                    <!-- Info -->
-                                    <StackLayout Spacing="4" VerticalOptions="Start" Grid.Column="0">
-                                        <Label Text="{Binding Modelo}" FontSize="20" FontAttributes="Bold" />
-                                        <Label Text="{Binding Autonomia}" TextColor="Gray" FontSize="12" />
-                                        <Label Text="{Binding Aceleracion}" TextColor="Gray" FontSize="12" />
-                                        <Label Text="{Binding Velocidad}" TextColor="Gray" FontSize="12" />
+                                    <!-- Botón alineado a la izquierda -->
+                                    <Button Text="Ordenar"
+                                BackgroundColor="#007AFF"
+                                TextColor="White"
+                                FontAttributes="Bold"
+                                CornerRadius="12"
+                                HeightRequest="40"
+                                WidthRequest="110"
+                                HorizontalOptions="Start"
+                                Margin="0,10,0,0"
+                                Clicked="OnOrdenarClicked" />
+                                </VerticalStackLayout>
 
-                                        <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,10,0,0">
-                                            <Button Text="Ordenar"
-                                        BackgroundColor="#007AFF"
-                                        TextColor="White"
-                                        CornerRadius="10" Clicked="OnOrdenarClicked" />
-                                            <Button Text="Detalles"
-                                        BorderColor="#007AFF"
-                                        TextColor="#007AFF"
-                                        BackgroundColor="Transparent"
-                                        CornerRadius="10" />
-                                        </StackLayout>
-                                    </StackLayout>
+                                <!-- Imagen del vehículo -->
+                                <ImageButton Source="{Binding ImagenUrl}"
+                                     HeightRequest="100"
+                                     WidthRequest="170"
+                                     BackgroundColor="Transparent"
+                                     Aspect="AspectFit"
+                                     Clicked="OnImageTapped"
+                                     HorizontalOptions="End"
+                                     VerticalOptions="Center"/>
 
-                                    <!-- Imagen -->
-                                    <Image Source="{Binding ImagenUrl}"
-                               WidthRequest="160"
-                               HeightRequest="100"
-                               Aspect="AspectFit"
-                               HorizontalOptions="End"
-                               VerticalOptions="Start"
-                               Grid.Column="1"
-                               Margin="0,0,0,0"/>
-                                </Grid>
-                            </Border>
-                        </Grid>
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-
-        </StackLayout>
-
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -2,72 +2,89 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeslaAppMovilFinal2._0.ComprasPage"
              Title="Resumen y Datos de Compra"
-             BackgroundColor="#bfbfbf">
+             BackgroundColor="#EFEFEF">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="25">
 
             <!-- 🧾 TARJETA DE RESUMEN -->
-            <Frame CornerRadius="12" BorderColor="Black" BackgroundColor="#FAFAFA"
-                   Padding="15" HasShadow="True" Margin="0.5">
-                <VerticalStackLayout Spacing="8">
-                    <Label TextColor="Black" Text="Resumen de Compra" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+            <Frame CornerRadius="20"
+                   BackgroundColor="#F9F9F9"
+                   Padding="20"
+                   HasShadow="True"
+                   Margin="10">
+
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Resumen de Compra"
+                           FontFamily="PoppinsBold"
+                           FontSize="22"
+                           TextColor="#333"
+                           HorizontalOptions="Center" />
 
                     <Grid ColumnDefinitions="Auto,*"
-              RowDefinitions="Auto,Auto,Auto,Auto"
-              RowSpacing="6"
-              ColumnSpacing="10">
-                        
+                          RowDefinitions="Auto,Auto,Auto,Auto"
+                          RowSpacing="8"
+                          ColumnSpacing="12">
 
+                        <Label Text="Modelo:" FontFamily="PoppinsBold" TextColor="#333" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.IdVehiculo}" FontFamily="PoppinsRegular" TextColor="#333" Grid.Row="0" Grid.Column="1"/>
 
-                        <Label TextColor="Black" Text="Modelo:" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
-                        <Label TextColor="Black" Text="{Binding Personalizacion.IdVehiculo}" Grid.Row="0" Grid.Column="1"/>
+                        <Label Text="Color Exterior:" FontFamily="PoppinsBold" TextColor="#333" Grid.Row="1" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Color}" FontFamily="PoppinsRegular" TextColor="#333" Grid.Row="1" Grid.Column="1"/>
 
-                        <Label TextColor="Black" Text="Color Exterior:" FontAttributes="Bold" Grid.Row="1" Grid.Column="0"/>
-                        <Label TextColor="Black" Text="{Binding Personalizacion.Color}" Grid.Row="1" Grid.Column="1"/>
+                        <Label Text="Aros:" FontFamily="PoppinsBold" TextColor="#333" Grid.Row="2" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Aros}" FontFamily="PoppinsRegular" TextColor="#333" Grid.Row="2" Grid.Column="1"/>
 
-                        <Label TextColor="Black" Text="Aros:" FontAttributes="Bold" Grid.Row="2" Grid.Column="0"/>
-                        <Label TextColor="Black" Text="{Binding Personalizacion.Aros}" Grid.Row="2" Grid.Column="1"/>
-
-                        <Label TextColor="Black" Text="Interior:" FontAttributes="Bold" Grid.Row="3" Grid.Column="0"/>
-                        <Label TextColor="Black" Text="{Binding Personalizacion.Interior}" Grid.Row="3" Grid.Column="1"/>
+                        <Label Text="Interior:" FontFamily="PoppinsBold" TextColor="#333" Grid.Row="3" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Interior}" FontFamily="PoppinsRegular" TextColor="#333" Grid.Row="3" Grid.Column="1"/>
                     </Grid>
                 </VerticalStackLayout>
             </Frame>
 
+            <!-- FORMULARIO DE COMPRA -->
+            <Frame CornerRadius="20"
+                   BackgroundColor="#F9F9F9"
+                   Padding="20"
+                   HasShadow="True"
+                   Margin="10">
 
-            <Frame CornerRadius="12" BorderColor="black" BackgroundColor="#FAFAFA" Padding="15" HasShadow="True">
-                <VerticalStackLayout Spacing="12">
-                    
-                    <Label TextColor="Black" HorizontalOptions="Center" Text="Datos para la compra" FontSize="18" FontAttributes="Bold"/>
-                    
-                    <BoxView HeightRequest="1" BackgroundColor="Black" HorizontalOptions="Center"/>
-                    
-                    <Entry TextColor="Black" Placeholder="Nombre" Text="{Binding Nombre}" />
-                    <Entry TextColor="Black" Placeholder="Apellido 1" Text="{Binding Apellido1}" />
-                    <Entry TextColor="Black" Placeholder="Apellido 2" Text="{Binding Apellido2}" />
-                    <Entry TextColor="Black" Placeholder="Cédula" Keyboard="Numeric" Text="{Binding Cedula}" />
-                    <Entry TextColor="Black" Placeholder="Teléfono" Keyboard="Telephone" Text="{Binding Telefono}" />
-                    <Entry TextColor="Black" Placeholder="Correo Electrónico" Keyboard="Email" Text="{Binding Email}" />
-                    
-                    
-                    
-                    <Label HorizontalOptions="Center" TextColor="Black" Text="Datos de la tarjeta" FontSize="18" FontAttributes="Bold" Margin="0,15,0,0"/>
-                    <Entry TextColor="Black" Placeholder="Número de Tarjeta (16 dígitos)" Keyboard="Numeric" Text="{Binding NumeroTarjeta}" />
-                    <Entry TextColor="Black" Placeholder="Fecha de Caducidad (MM/AA)" Text="{Binding FechaCaducidad}" />
-                    <Entry TextColor="Black" Placeholder="CVV (3 dígitos)" Keyboard="Numeric" IsPassword="True" Text="{Binding CVV}" />
+                <VerticalStackLayout Spacing="16">
+
+                    <Label Text="Datos para la compra"
+                           FontSize="20"
+                           FontFamily="PoppinsBold"
+                           HorizontalOptions="Center"
+                           TextColor="#333"/>
+
+                    <Entry Placeholder="Nombre" FontFamily="PoppinsRegular" Text="{Binding Nombre}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="Apellido 1" FontFamily="PoppinsRegular" Text="{Binding Apellido1}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="Apellido 2" FontFamily="PoppinsRegular" Text="{Binding Apellido2}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="Cédula" FontFamily="PoppinsRegular" Keyboard="Numeric" Text="{Binding Cedula}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="Teléfono" FontFamily="PoppinsRegular" Keyboard="Telephone" Text="{Binding Telefono}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="Correo Electrónico" FontFamily="PoppinsRegular" Keyboard="Email" Text="{Binding Email}" PlaceholderColor="#888" TextColor="#333"/>
+
+                    <Label Text="Datos de la tarjeta"
+                           FontSize="20"
+                           FontFamily="PoppinsBold"
+                           HorizontalOptions="Center"
+                           TextColor="#333"
+                           Margin="0,10,0,0"/>
+
+                    <Entry Placeholder="Número de Tarjeta (16 dígitos)" FontFamily="PoppinsRegular" Keyboard="Numeric" Text="{Binding NumeroTarjeta}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="Fecha de Caducidad (MM/AA)" FontFamily="PoppinsRegular" Text="{Binding FechaCaducidad}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="CVV (3 dígitos)" FontFamily="PoppinsRegular" Keyboard="Numeric" IsPassword="True" Text="{Binding CVV}" PlaceholderColor="#888" TextColor="#333"/>
                 </VerticalStackLayout>
             </Frame>
 
-            <BoxView HeightRequest="1" BackgroundColor="black" HorizontalOptions="Center"/>
-            
+            <!-- BOTÓN FINAL -->
             <Button Text="Finalizar Compra"
                     BackgroundColor="#007AFF"
+                    FontFamily="PoppinsBold"
                     TextColor="White"
-                    CornerRadius="10"
+                    CornerRadius="12"
                     FontAttributes="Bold"
                     HeightRequest="50"
-                    Clicked="OnFinalizarCompraClicked"/>
+                    Margin="10,0"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

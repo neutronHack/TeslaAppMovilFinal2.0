@@ -17,15 +17,22 @@
             FontAttributes="Bold"
             Clicked="CerrarSesionClicked"/>    
 
-			<!-- Título principal -->
+		
 			<Label Text="Gestión de Vehículos Tesla"
                    FontSize="30"
                    FontAttributes="Bold"
                    TextColor="White"
                    HorizontalOptions="Center"/>
 
-			<!-- Formulario para agregar vehículos -->
-			<Frame CornerRadius="20" BackgroundColor="#1C1C1E" Padding="20" HasShadow="True">
+            <Label x:Name="FormularioTitulo" 
+               Text="Agregar Vehículo" 
+               FontSize="20"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center" />
+
+
+            <Frame CornerRadius="20" BackgroundColor="#1C1C1E" Padding="20" HasShadow="True">
 				<VerticalStackLayout Spacing="12">
 					<Entry x:Name="CodigoEntry" Placeholder="Código" TextColor="White" PlaceholderColor="#888"/>
 					<Entry x:Name="MarcaEntry" Placeholder="Marca" TextColor="White" PlaceholderColor="#888"/>
@@ -34,37 +41,22 @@
 					<Entry x:Name="PrecioEntry" Placeholder="Precio" Keyboard="Numeric" TextColor="White" PlaceholderColor="#888"/>
 					<Entry x:Name="KilometrajeEntry" Placeholder="Kilometraje" Keyboard="Numeric" TextColor="White" PlaceholderColor="#888"/>
                     <Entry x:Name="EstadoEntry" Placeholder="Estado"  TextColor="White" PlaceholderColor="#888"/>
-                    <!--<Picker x:Name="EstadoPick" Title="Estado" TitleColor="#888" TextColor="White">
-						<Picker.ItemsSource>
-							<x:Array Type="{x:Type x:String}">
-								<x:String>Nuevo</x:String>
-								<x:String>Usado</x:String>
-							</x:Array>
-						</Picker.ItemsSource>
-					</Picker>-->
-
-					<!--<Button Text="Seleccionar imagen"
-                            Clicked="OnSelectImageClicked" />
-
-                    <Image x:Name="ImagenSeleccionada"
-                            WidthRequest="300" 
-                            HeightRequest="300" 
-                            HorizontalOptions="Center" 
-                            VerticalOptions="Center" />-->
 
                     <Entry x:Name="EnlaceImagenEntry" Placeholder="Enlace de la imagen" />
 
-                    <!-- Botón para agregar -->
-					<Button Text="Agregar Vehículo"
-                            BackgroundColor="#007AFF"
-                            TextColor="White"
-                            CornerRadius="10"
-                            FontAttributes="Bold"
-                            Clicked="AgregarVehiculo"/>
-				</VerticalStackLayout>
+
+                    <Button x:Name="GuardarButton"
+                        Text="Agregar Vehículo"
+                        BackgroundColor="#007AFF"
+                        TextColor="White"
+                        CornerRadius="10"
+                        FontAttributes="Bold"
+                        Clicked="GuardarVehiculo"/>
+
+                </VerticalStackLayout>
 			</Frame>
 
-			<!-- Lista de vehículos -->
+			
 			<Label Text="Lista de Vehículos"
                    FontSize="24"
                    FontAttributes="Bold"

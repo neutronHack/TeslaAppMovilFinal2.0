@@ -1,4 +1,6 @@
-﻿using TeslaAppMovilFinal2._0.Models;
+﻿using CommunityToolkit.Maui.Views;
+using TeslaAppMovilFinal2._0.Models;
+using TeslaAppMovilFinal2._0.Popups;
 using TeslaAppMovilFinal2._0.Services;
 
 namespace TeslaAppMovilFinal2._0
@@ -39,6 +41,17 @@ namespace TeslaAppMovilFinal2._0
             if (vehiculo != null)
             {
                 await Navigation.PushAsync(new OrdenPage(vehiculo));
+            }
+        }
+        private void OnImageTapped(object sender, EventArgs e)
+        {
+            var imageButton = sender as ImageButton;
+            var vehiculo = imageButton?.BindingContext as Vehiculo;
+
+            if (vehiculo != null)
+            {
+                var popup = new ImagePopup(vehiculo.ImagenUrl);
+                this.ShowPopup(popup);
             }
         }
 

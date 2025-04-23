@@ -1,41 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeslaAppMovilFinal2._0.ReservasPage"
-             Title="Resumen y Datos de Reserva">
+             Title="Resumen y Datos de Reserva"
+             BackgroundColor="#EFEFEF">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="20" Spacing="25">
 
-            <!-- Resumen de Personalización -->
-            <Label Text="Resumen de Personalización" FontSize="20" FontAttributes="Bold" />
+            <!-- 🧾 TARJETA DE PERSONALIZACIÓN -->
+            <Frame CornerRadius="20"
+                   BackgroundColor="#F9F9F9"
+                   Padding="20"
+                   HasShadow="True"
+                   Margin="10">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Resumen de Personalización"
+                           FontSize="22"
+                           FontFamily="PoppinsBold"
+                           TextColor="#333"
+                           HorizontalOptions="Center"/>
 
-            <Label Text="Modelo:" FontAttributes="Bold"/>
-            <Label Text="{Binding Personalizacion.IdVehiculo}" />
+                    <Grid ColumnDefinitions="Auto,*"
+                          RowDefinitions="Auto,Auto,Auto,Auto"
+                          RowSpacing="8"
+                          ColumnSpacing="12">
 
-            <Label Text="Color Exterior:" FontAttributes="Bold"/>
-            <Label Text="{Binding Personalizacion.Color}" />
+                        <Label Text="Modelo:" FontFamily="PoppinsBold" TextColor="#333" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.IdVehiculo}" FontFamily="PoppinsRegular" TextColor="#333" Grid.Row="0" Grid.Column="1"/>
 
-            <Label Text="Aros:" FontAttributes="Bold"/>
-            <Label Text="{Binding Personalizacion.Aros}" />
+                        <Label Text="Color Exterior:" FontFamily="PoppinsBold" TextColor="#333" Grid.Row="1" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Color}" FontFamily="PoppinsRegular" TextColor="#333" Grid.Row="1" Grid.Column="1"/>
 
-            <Label Text="Interior:" FontAttributes="Bold"/>
-            <Label Text="{Binding Personalizacion.Interior}" />
+                        <Label Text="Aros:" FontFamily="PoppinsBold" TextColor="#333" Grid.Row="2" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Aros}" FontFamily="PoppinsRegular" TextColor="#333" Grid.Row="2" Grid.Column="1"/>
 
-            <!-- Datos del Cliente -->
-            <Label Text="Datos para la reserva" FontSize="20" FontAttributes="Bold" />
+                        <Label Text="Interior:" FontFamily="PoppinsBold" TextColor="#333" Grid.Row="3" Grid.Column="0"/>
+                        <Label Text="{Binding Personalizacion.Interior}" FontFamily="PoppinsRegular" TextColor="#333" Grid.Row="3" Grid.Column="1"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
 
-            <Entry Placeholder="Nombre" Text="{Binding Nombre}" />
-            <Entry Placeholder="Apellido 1" Text="{Binding Apellido1}" />
-            <Entry Placeholder="Apellido 2" Text="{Binding Apellido2}" />
-            <Entry Placeholder="Cédula" Keyboard="Numeric" Text="{Binding Cedula}" />
-            <Entry Placeholder="Teléfono" Keyboard="Telephone" Text="{Binding Telefono}" />
-            <Entry Placeholder="Correo Electrónico" Keyboard="Email" Text="{Binding Email}" />
+            <!-- 👤 FORMULARIO CLIENTE -->
+            <Frame CornerRadius="20"
+                   BackgroundColor="#F9F9F9"
+                   Padding="20"
+                   HasShadow="True"
+                   Margin="10">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Datos para la reserva"
+                           FontSize="20"
+                           FontFamily="PoppinsBold"
+                           HorizontalOptions="Center"
+                           TextColor="#333"/>
 
+                    <Entry Placeholder="Nombre" FontFamily="PoppinsRegular" Text="{Binding Nombre}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="Apellido 1" FontFamily="PoppinsRegular" Text="{Binding Apellido1}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="Apellido 2" FontFamily="PoppinsRegular" Text="{Binding Apellido2}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="Cédula" FontFamily="PoppinsRegular" Keyboard="Numeric" Text="{Binding Cedula}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="Teléfono" FontFamily="PoppinsRegular" Keyboard="Telephone" Text="{Binding Telefono}" PlaceholderColor="#888" TextColor="#333"/>
+                    <Entry Placeholder="Correo Electrónico" FontFamily="PoppinsRegular" Keyboard="Email" Text="{Binding Email}" PlaceholderColor="#888" TextColor="#333"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- BOTÓN FINAL -->
             <Button Text="Finalizar Reserva"
                     BackgroundColor="#007AFF"
                     TextColor="White"
-                    Clicked="OnFinalizarReservaClicked" />
-
+                    FontFamily="PoppinsBold"
+                    CornerRadius="12"
+                    HeightRequest="50"
+                    Margin="10,0"
+                    Clicked="OnFinalizarReservaClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
