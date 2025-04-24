@@ -17,6 +17,18 @@ public partial class MisReservasPage : ContentPage
         CargarReservas();
     }
 
+    public string ObtenerPrecioPorModelo(string modelo)
+    {
+        return modelo switch
+        {
+            "Tesla Model S" => "$80,000",
+            "Tesla Model Y" => "$41,500",
+            "Tesla Model X" => "$85,000",
+            "Tesla Model 3" => "$34,500",
+            _ => "$0",
+        };
+    }
+
     private async Task CargarReservas()
     {
         ReservasLayout.Children.Clear();
@@ -50,6 +62,7 @@ public partial class MisReservasPage : ContentPage
             if (reserva.IdUsuario != idUsuario)
                 continue;
 
+            string precio = ObtenerPrecioPorModelo(reserva.idVehiculo);
             var frame = new Frame
             {
                 BorderColor = Colors.Gray,
@@ -66,6 +79,7 @@ public partial class MisReservasPage : ContentPage
                         new Label { Text = $"Interior: {reserva.interior}" },
                         new Label { Text = $"Nombre: {reserva.Nombre} {reserva.Apellido1} {reserva.Apellido2}" },
                         new Label { Text = $"Correo: {reserva.Email}" },
+                        new Label { Text = $"Precio: {precio}" },
 
                         new HorizontalStackLayout
                         {

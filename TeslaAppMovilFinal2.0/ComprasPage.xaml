@@ -7,7 +7,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="25">
 
-            <!-- 🧾 TARJETA DE RESUMEN -->
+            <!-- TARJETA DE RESUMEN -->
             <Frame CornerRadius="20"
                    BackgroundColor="#F9F9F9"
                    Padding="20"
@@ -22,7 +22,7 @@
                            HorizontalOptions="Center" />
 
                     <Grid ColumnDefinitions="Auto,*"
-                          RowDefinitions="Auto,Auto,Auto,Auto"
+                          RowDefinitions="Auto,Auto,Auto,Auto,Auto"
                           RowSpacing="8"
                           ColumnSpacing="12">
 
@@ -37,6 +37,10 @@
 
                         <Label Text="Interior:" FontFamily="PoppinsBold" TextColor="#333" Grid.Row="3" Grid.Column="0"/>
                         <Label Text="{Binding Personalizacion.Interior}" FontFamily="PoppinsRegular" TextColor="#333" Grid.Row="3" Grid.Column="1"/>
+
+                        <Label Text="Precio:" FontFamily="PoppinsBold" TextColor="#333" Grid.Row="4" Grid.Column="0"/>
+                        <Label Text="{Binding Precio}" FontFamily="PoppinsRegular" TextColor="#333" Grid.Row="4" Grid.Column="1"/>
+
                     </Grid>
                 </VerticalStackLayout>
             </Frame>
@@ -84,7 +88,8 @@
                     CornerRadius="12"
                     FontAttributes="Bold"
                     HeightRequest="50"
-                    Margin="10,0"/>
+                    Margin="10,0"
+                    Clicked= "OnFinalizarCompraClicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

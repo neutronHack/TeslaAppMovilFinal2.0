@@ -1,7 +1,7 @@
-using MailKit.Net.Smtp;
-using MimeKit;
+ï»¿using MimeKit;
 using TeslaAppMovilFinal2._0.Models;
 using TeslaAppMovilFinal2._0.Services;
+using MailKit.Net.Smtp;
 
 namespace TeslaAppMovilFinal2._0;
 
@@ -17,16 +17,32 @@ public partial class ComprasPage : ContentPage
     public string Telefono { get; set; }
     public string Email { get; set; }
 
-    // Datos tarjeta
+    // Datos de tarjeta
     public string NumeroTarjeta { get; set; }
     public string FechaCaducidad { get; set; }
     public string CVV { get; set; }
+
+    // Precio
+    public string Precio { get; set; }
 
     public ComprasPage(PersonalizacionVehiculo personalizacion)
     {
         InitializeComponent();
         Personalizacion = personalizacion;
+        Precio = ObtenerPrecioPorModelo(personalizacion.IdVehiculo); // âœ… asignaciÃ³n del precio
         BindingContext = this;
+    }
+
+    public string ObtenerPrecioPorModelo(string modelo)
+    {
+        return modelo switch
+        {
+            "Tesla Model S" => "$80,000",
+            "Tesla Model Y" => "$41,500",
+            "Tesla Model X" => "$85,000",
+            "Tesla Model 3" => "$34,500",
+            _ => "$0",
+        };
     }
 
     private async void OnFinalizarCompraClicked(object sender, EventArgs e)
@@ -37,38 +53,33 @@ public partial class ComprasPage : ContentPage
             return;
         }
 
-        // Validar que Teléfono contenga solo números
         if (!Telefono.All(char.IsDigit))
         {
-            await DisplayAlert("Error", "El teléfono debe contener solo números.", "OK");
+            await DisplayAlert("Error", "El telÃ©fono debe contener solo nÃºmeros.", "OK");
             return;
         }
 
-        // Validar correo electrónico
         if (!System.Text.RegularExpressions.Regex.IsMatch(Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
         {
-            await DisplayAlert("Error", "Ingrese un correo electrónico válido.", "OK");
+            await DisplayAlert("Error", "Ingrese un correo electrÃ³nico vÃ¡lido.", "OK");
             return;
         }
 
-        // Validar número de tarjeta
         if (NumeroTarjeta.Length != 16 || !NumeroTarjeta.All(char.IsDigit))
         {
-            await DisplayAlert("Error", "El número de tarjeta debe tener exactamente 16 dígitos numéricos.", "OK");
+            await DisplayAlert("Error", "El nÃºmero de tarjeta debe tener exactamente 16 dÃ­gitos numÃ©ricos.", "OK");
             return;
         }
 
-        // Validar formato de fecha MM/YY
         if (!System.Text.RegularExpressions.Regex.IsMatch(FechaCaducidad, @"^(0[1-9]|1[0-2])\/\d{2}$"))
         {
             await DisplayAlert("Error", "La fecha de caducidad debe tener el formato MM/YY.", "OK");
             return;
         }
 
-        // Validar CVV
         if (CVV.Length != 3 || !CVV.All(char.IsDigit))
         {
-            await DisplayAlert("Error", "El CVV debe tener exactamente 3 dígitos numéricos.", "OK");
+            await DisplayAlert("Error", "El CVV debe tener exactamente 3 dÃ­gitos numÃ©ricos.", "OK");
             return;
         }
 
@@ -96,7 +107,7 @@ public partial class ComprasPage : ContentPage
 
         if (exito)
         {
-            await DisplayAlert("¡Éxito!", "Tu compra ha sido registrada con éxito", "OK");
+            await DisplayAlert("Â¡Ã‰xito!", "Tu compra ha sido registrada con Ã©xito", "OK");
             await Navigation.PopToRootAsync();
         }
         else
@@ -110,36 +121,38 @@ public partial class ComprasPage : ContentPage
         var mensaje = new MimeMessage();
         mensaje.From.Add(new MailboxAddress("Tesla Costa Rica", "danielalpizarb@gmail.com"));
         mensaje.To.Add(new MailboxAddress(compra.Nombre, destinatario));
-        mensaje.Subject = "Confirmación de Compra - Tesla Costa Rica";
+        mensaje.Subject = "ConfirmaciÃ³n de Compra - Tesla Costa Rica";
 
-        // Fix the issue by using MimeKit's TextPart class
-        mensaje.Body = new MimeKit.TextPart("plain")
+        mensaje.Body = new TextPart("plain")
         {
             Text = $@"
-            ¡Gracias por tu compra, {compra.Nombre}!
+Â¡Gracias por tu compra, {compra.Nombre}!
 
-            Aquí están los detalles de tu compra:
+AquÃ­ estÃ¡n los detalles de tu compra:
 
-            Modelo: {compra.Modelo}
-            Color: {compra.Color}
-            Aros: {compra.Aros}
-            Interior: {compra.Interior}
+Modelo: {compra.Modelo}
+Color: {compra.Color}
+Aros: {compra.Aros}
+Interior: {compra.Interior}
+Precio: {Precio}
 
-            Nombre completo: {compra.Nombre} {compra.Apellido1} {compra.Apellido2}
-            Cédula: {compra.Cedula}
-            Teléfono: {compra.Telefono}
-            Correo: {compra.Email}
+Nombre completo: {compra.Nombre} {compra.Apellido1} {compra.Apellido2}
+CÃ©dula: {compra.Cedula}
+TelÃ©fono: {compra.Telefono}
+Correo: {compra.Email}
 
-            La compra ha sido registrada exitosamente. Pronto nos pondremos en contacto contigo.
+La compra ha sido registrada exitosamente. Pronto nos pondremos en contacto contigo.
 
-            Saludos,
-            Tesla Costa Rica
-            "
+Saludos,
+Tesla Costa Rica
+"
         };
 
         using var cliente = new SmtpClient();
         try
         {
+            cliente.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
             await cliente.ConnectAsync("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
             await cliente.AuthenticateAsync("danielalpizarb@gmail.com", "qhrezlcxlwrayqac");
             await cliente.SendAsync(mensaje);
@@ -150,5 +163,4 @@ public partial class ComprasPage : ContentPage
             await DisplayAlert("Error de correo", $"No se pudo enviar el correo: {ex.Message}", "OK");
         }
     }
-
 }

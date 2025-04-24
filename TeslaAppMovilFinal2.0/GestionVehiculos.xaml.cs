@@ -1,32 +1,25 @@
 using TeslaAppMovilFinal2._0.Models;
-using TeslaAppMovilFinal2._0.Services;
 using Firebase.Database;
 using Firebase.Database.Query;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
-
 
 namespace TeslaAppMovilFinal2._0;
 
 public partial class GestionVehiculos : ContentPage
 {
-
     private readonly FirebaseClient firebaseClient;
     private Vehiculo vehiculoSeleccionado;
 
     public GestionVehiculos()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         firebaseClient = new FirebaseClient("https://teslaappmovil-default-rtdb.firebaseio.com/");
         CargarVehiculos();
-
     }
 
     private async void GuardarVehiculo(object sender, EventArgs e)
     {
         if (vehiculoSeleccionado == null)
         {
-            // Nuevo vehículo
             var nuevoVehiculo = new Vehiculo
             {
                 Codigo = CodigoEntry.Text,
@@ -39,16 +32,11 @@ public partial class GestionVehiculos : ContentPage
                 ImagenUrl = EnlaceImagenEntry.Text
             };
 
-            await firebaseClient
-                .Child("vehiculos")
-                .Child(nuevoVehiculo.Codigo)
-                .PutAsync(nuevoVehiculo);
-
+            await firebaseClient.Child("vehiculos").Child(nuevoVehiculo.Codigo).PutAsync(nuevoVehiculo);
             await DisplayAlert("Éxito", "Vehículo agregado correctamente", "OK");
         }
         else
         {
-            // Edición
             vehiculoSeleccionado.Marca = MarcaEntry.Text;
             vehiculoSeleccionado.Modelo = ModeloEntry.Text;
             vehiculoSeleccionado.Año = AñoEntry.Text;
@@ -57,11 +45,7 @@ public partial class GestionVehiculos : ContentPage
             vehiculoSeleccionado.Estado = EstadoEntry.Text;
             vehiculoSeleccionado.ImagenUrl = EnlaceImagenEntry.Text;
 
-            await firebaseClient
-                .Child("vehiculos")
-                .Child(vehiculoSeleccionado.Codigo)
-                .PutAsync(vehiculoSeleccionado);
-
+            await firebaseClient.Child("vehiculos").Child(vehiculoSeleccionado.Codigo).PutAsync(vehiculoSeleccionado);
             await DisplayAlert("Actualizado", "Vehículo modificado correctamente", "OK");
         }
 
@@ -69,13 +53,9 @@ public partial class GestionVehiculos : ContentPage
         CargarVehiculos();
     }
 
-
     private async void CargarVehiculos()
     {
-        var vehiculos = await firebaseClient
-            .Child("vehiculos")
-            .OnceAsync<Vehiculo>();
-
+        var vehiculos = await firebaseClient.Child("vehiculos").OnceAsync<Vehiculo>();
         VehiculosCollectionView.ItemsSource = vehiculos.Select(x => x.Object).ToList();
     }
 
@@ -95,7 +75,6 @@ public partial class GestionVehiculos : ContentPage
         CodigoEntry.IsEnabled = true;
     }
 
-
     private void OnEditarVehiculoClicked(object sender, EventArgs e)
     {
         var button = sender as Button;
@@ -107,19 +86,16 @@ public partial class GestionVehiculos : ContentPage
             CodigoEntry.Text = vehiculo.Codigo;
             MarcaEntry.Text = vehiculo.Marca;
             ModeloEntry.Text = vehiculo.Modelo;
-            AñoEntry.Text = vehiculo.Año.ToString();
+            AñoEntry.Text = vehiculo.Año;
             PrecioEntry.Text = vehiculo.Precio.ToString();
-            KilometrajeEntry.Text = vehiculo.Kilometraje.ToString();
+            KilometrajeEntry.Text = vehiculo.Kilometraje;
             EstadoEntry.Text = vehiculo.Estado;
             EnlaceImagenEntry.Text = vehiculo.ImagenUrl;
 
-           
             FormularioTitulo.Text = "Editar Vehículo";
             GuardarButton.Text = "Editar Vehículo";
-
         }
     }
-
 
     private async void OnEliminarVehiculoClicked(object sender, EventArgs e)
     {
@@ -131,11 +107,7 @@ public partial class GestionVehiculos : ContentPage
             var confirm = await DisplayAlert("Confirmar", $"¿Eliminar vehículo {vehiculo.Codigo}?", "Sí", "No");
             if (confirm)
             {
-                await firebaseClient
-                    .Child("vehiculos")
-                    .Child(vehiculo.Codigo)
-                    .DeleteAsync();
-
+                await firebaseClient.Child("vehiculos").Child(vehiculo.Codigo).DeleteAsync();
                 await DisplayAlert("Eliminado", "Vehículo eliminado correctamente", "OK");
                 CargarVehiculos();
             }
@@ -144,14 +116,7 @@ public partial class GestionVehiculos : ContentPage
 
     private async void CerrarSesionClicked(object sender, EventArgs e)
     {
-        //// Implementación para cerrar sesión
         Application.Current.MainPage = new LoginPage();
-        DisplayAlert("Cerrar sesión", "Has cerrado sesión exitosamente.", "OK");
+        await DisplayAlert("Cerrar sesión", "Has cerrado sesión exitosamente.", "OK");
     }
-
-
 }
-
-
-
-

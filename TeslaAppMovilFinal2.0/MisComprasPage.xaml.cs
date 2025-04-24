@@ -17,6 +17,18 @@ public partial class MisComprasPage : ContentPage
         CargarCompras();
     }
 
+    public string ObtenerPrecioPorModelo(string modelo)
+    {
+        return modelo switch
+        {
+            "Tesla Model S" => "$80,000",
+            "Tesla Model Y" => "$41,500",
+            "Tesla Model X" => "$85,000",
+            "Tesla Model 3" => "$34,500",
+            _ => "$0",
+        };
+    }
+
     private async void CargarCompras()
     {
         ComprasLayout.Children.Clear();
@@ -44,6 +56,7 @@ public partial class MisComprasPage : ContentPage
 
         foreach (var compra in compras)
         {
+            string precio = ObtenerPrecioPorModelo(compra.Modelo);
             var frame = new Frame
             {
                 BorderColor = Colors.Gray,
@@ -57,7 +70,8 @@ public partial class MisComprasPage : ContentPage
                         new Label { Text = $"Color: {compra.Color}" },
                         new Label { Text = $"Aros: {compra.Aros}" },
                         new Label { Text = $"Interior: {compra.Interior}" },
-                        new Label { Text = $"Correo: {compra.Email}" }
+                        new Label { Text = $"Correo: {compra.Email}" },
+                        new Label { Text = $"Precio: {precio}" }
                     }
                 }
             };

@@ -1,4 +1,9 @@
-﻿using System.Net.Http.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Json;
+using System.Text;
+using System.Threading.Tasks;
 using TeslaAppMovilFinal2._0.Models;
 
 namespace TeslaAppMovilFinal2._0.Services
@@ -6,7 +11,7 @@ namespace TeslaAppMovilFinal2._0.Services
     public class FirebaseServiceUsuario
     {
         private readonly HttpClient _httpClient;
-        private readonly string _firebaseBaseUrl = "https://teslaappmovil-default-rtdb.firebaseio.com";
+        private readonly string _firebaseBaseUrl = "https://teslaappmovil-default-rtdb.firebaseio.com/";
 
         public FirebaseServiceUsuario()
         {

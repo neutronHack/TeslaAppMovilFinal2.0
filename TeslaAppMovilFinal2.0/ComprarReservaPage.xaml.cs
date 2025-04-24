@@ -14,11 +14,14 @@ public partial class ComprarReservaPage : ContentPage, INotifyPropertyChanged
     public string FechaCaducidad { get; set; }
     public string CVV { get; set; }
 
+    public string Precio { get; set; }
+
     public string ReservaResumen =>
         $"Modelo: {Reserva.idVehiculo}\n" +
         $"Color: {Reserva.color}\n" +
         $"Aros: {Reserva.aros}\n" +
         $"Interior: {Reserva.interior}\n\n" +
+        $"Precio: {Precio}\n\n" +
         $"Cliente: {Reserva.Nombre} {Reserva.Apellido1} {Reserva.Apellido2}\n" +
         $"Cédula: {Reserva.Cedula}\n" +
         $"Correo: {Reserva.Email}\n" +
@@ -29,7 +32,20 @@ public partial class ComprarReservaPage : ContentPage, INotifyPropertyChanged
         InitializeComponent();
         Reserva = reserva;
         this.idReserva = idReserva;
+        Precio = ObtenerPrecioPorModelo(reserva.idVehiculo); 
         BindingContext = this;
+    }
+
+    public string ObtenerPrecioPorModelo(string modelo)
+    {
+        return modelo switch
+        {
+            "Tesla Model S" => "$80,000",
+            "Tesla Model Y" => "$41,500",
+            "Tesla Model X" => "$85,000",
+            "Tesla Model 3" => "$34,500",
+            _ => "$0",
+        };
     }
 
     private async void OnFinalizarCompraClicked(object sender, EventArgs e)
@@ -103,30 +119,33 @@ public partial class ComprarReservaPage : ContentPage, INotifyPropertyChanged
         mensaje.Body = new TextPart("plain")
         {
             Text = $@"
-            ¡Gracias por tu compra, {compra.Nombre}!
+        ¡Gracias por tu compra, {compra.Nombre}!
 
-            Aquí están los detalles de tu compra:
+        Aquí están los detalles de tu compra:
 
-            Modelo: {compra.Modelo}
-            Color: {compra.Color}
-            Aros: {compra.Aros}
-            Interior: {compra.Interior}
+        Modelo: {compra.Modelo}
+        Color: {compra.Color}
+        Aros: {compra.Aros}
+        Interior: {compra.Interior}
 
-            Nombre completo: {compra.Nombre} {compra.Apellido1} {compra.Apellido2}
-            Cédula: {compra.Cedula}
-            Teléfono: {compra.Telefono}
-            Correo: {compra.Email}
+        Nombre completo: {compra.Nombre} {compra.Apellido1} {compra.Apellido2}
+        Cédula: {compra.Cedula}
+        Teléfono: {compra.Telefono}
+        Correo: {compra.Email}
 
-            La compra ha sido registrada exitosamente. Pronto nos pondremos en contacto contigo.
+        La compra ha sido registrada exitosamente. Pronto nos pondremos en contacto contigo.
 
-            Saludos,
-            Tesla Costa Rica
-            "
+        Saludos,
+        Tesla Costa Rica
+        "
         };
 
         using var cliente = new SmtpClient();
         try
         {
+            
+            cliente.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
             await cliente.ConnectAsync("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
             await cliente.AuthenticateAsync("danielalpizarb@gmail.com", "qhrezlcxlwrayqac");
             await cliente.SendAsync(mensaje);

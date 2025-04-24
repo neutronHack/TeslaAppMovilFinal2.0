@@ -1,4 +1,4 @@
-using System.Net.Mail;
+using MailKit.Net.Smtp;
 using MimeKit;
 using TeslaAppMovilFinal2._0.Models;
 using TeslaAppMovilFinal2._0.Services;
@@ -22,11 +22,28 @@ public partial class ReservasPage : ContentPage
     public string FechaCaducidad { get; set; }
     public string CVV { get; set; }
 
+    // Precio
+    public string Precio { get; set; }
+
     public ReservasPage(PersonalizacionVehiculo personalizacion)
     {
         InitializeComponent();
         Personalizacion = personalizacion;
+        Precio = ObtenerPrecioPorModelo(Personalizacion.IdVehiculo); // << Asignar antes del binding
         BindingContext = this;
+    }
+
+
+    public string ObtenerPrecioPorModelo(string modelo)
+    {
+        return modelo switch
+        {
+            "Tesla Model S" => "$80,000",
+            "Tesla Model Y" => "$41,500",
+            "Tesla Model X" => "$85,000",
+            "Tesla Model 3" => "$34,500",
+            _ => "$0",
+        };
     }
 
     private async void OnFinalizarReservaClicked(object sender, EventArgs e)
@@ -91,30 +108,32 @@ public partial class ReservasPage : ContentPage
         mensaje.Body = new TextPart("plain")
         {
             Text = $@"
-            ¡Gracias por tu reserva, {reserva.Nombre}!
+                ¡Gracias por tu reserva, {reserva.Nombre}!
 
-            Aquí están los detalles de tu reserva:
+                Aquí están los detalles de tu reserva:
 
-            Modelo: {reserva.idVehiculo}
-            Color: {reserva.color}
-            Aros: {reserva.aros}
-            Interior: {reserva.interior}
+                Modelo: {reserva.idVehiculo}
+                Color: {reserva.color}
+                Aros: {reserva.aros}
+                Interior: {reserva.interior}
 
-            Nombre completo: {reserva.Nombre} {reserva.Apellido1} {reserva.Apellido2}
-            Cédula: {reserva.Cedula}
-            Teléfono: {reserva.Telefono}
-            Correo: {reserva.Email}
+                Nombre completo: {reserva.Nombre} {reserva.Apellido1} {reserva.Apellido2}
+                Cédula: {reserva.Cedula}
+                Teléfono: {reserva.Telefono}
+                Correo: {reserva.Email}
 
-            La reserva ha sido registrada exitosamente. Pronto nos pondremos en contacto contigo.
+                La reserva ha sido registrada exitosamente. Pronto nos pondremos en contacto contigo.
 
-            Saludos,
-            Tesla Costa Rica
-            "
+                Saludos,
+                Tesla Costa Rica"
         };
 
-        using var cliente = new MailKit.Net.Smtp.SmtpClient(); // Use MailKit's SmtpClient
+        using var cliente = new SmtpClient();
         try
         {
+            // Ignorar errores de certificado SSL (solo para testing)
+            cliente.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
             await cliente.ConnectAsync("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
             await cliente.AuthenticateAsync("danielalpizarb@gmail.com", "qhrezlcxlwrayqac");
             await cliente.SendAsync(mensaje);
@@ -125,5 +144,6 @@ public partial class ReservasPage : ContentPage
             await DisplayAlert("Error de correo", $"No se pudo enviar el correo: {ex.Message}", "OK");
         }
     }
+
 
 }

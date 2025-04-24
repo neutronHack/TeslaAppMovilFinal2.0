@@ -4,27 +4,6 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TeslaAppMovilFinal2._0"
-    FlyoutBehavior="Flyout"
+    Shell.FlyoutBehavior="Flyout"
     Title="TeslaAppMovilFinal2._0">
-    <!-- Página principal -->
-    <FlyoutItem Title="Home" Icon="home.png">
-        <ShellContent
-            Title="Home"
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage" />
-    </FlyoutItem>
-
-    <!-- Iniciar sesión -->
-    <FlyoutItem Title="Iniciar sesión" Icon="login_icon.png">
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}"/>
-          
-    </FlyoutItem>
-
-    <!-- Registrarse -->
-    <FlyoutItem Title="Registrarse" Icon="register_icon.png">
-        <ShellContent
-            Title="Registrarse"
-            ContentTemplate="{DataTemplate local:RegisterPage}"
-            Route="RegisterPage" />
-    </FlyoutItem>
 </Shell>
